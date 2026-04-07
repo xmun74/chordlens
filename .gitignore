@@ -10,6 +10,9 @@
 !.yarn/releases
 !.yarn/versions
 
+# pnpm
+pnpm-debug.log*
+
 # testing
 /coverage
 
@@ -23,6 +26,9 @@
 # misc
 .DS_Store
 *.pem
+
+# claude code
+.claude/
 
 # debug
 npm-debug.log*

@@ -1,0 +1,32 @@
+import type { ChordResult } from "@/shared/model";
+
+export const MOCK_RESULT: ChordResult = {
+  id: "mock-fast-car-001",
+  title: "Acoustic Guitar Cover - Fast Car",
+  channelName: "Guitarist Channel",
+  thumbnailUrl: "https://img.youtube.com/vi/NJ0Z6XpEbQc/maxresdefault.jpg",
+  tempo: 104,
+  key: "C Major",
+  chords: [
+    { time: "0:12", chord: "Am" },
+    { time: "0:16", chord: "F" },
+    { time: "0:24", chord: "C" },
+    { time: "0:28", chord: "G" },
+    { time: "0:32", chord: "Am" },
+    { time: "0:40", chord: "Dm" },
+    { time: "0:48", chord: "F" },
+    { time: "0:56", chord: "C" },
+    { time: "1:04", chord: "G" },
+    { time: "1:12", chord: "Am" },
+    { time: "1:20", chord: "F" },
+    { time: "1:28", chord: "C" },
+    { time: "1:36", chord: "G" },
+    { time: "1:44", chord: "Am" },
+    { time: "1:52", chord: "Em" },
+    { time: "2:00", chord: "F" },
+    { time: "2:08", chord: "C" },
+    { time: "2:16", chord: "G" },
+    { time: "2:24", chord: "Am" },
+    { time: "2:32", chord: "F" },
+  ],
+};
