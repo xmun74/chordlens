@@ -13,7 +13,7 @@ export function Footer() {
             <Link
               key={link}
               href={`/${link.toLowerCase()}`}
-              className="font-[family-name:var(--font-noto-sans-kr)] text-sm text-text-primary/40 hover:text-text-primary/70 transition-colors tracking-wide"
+              className="font-(family-name:--font-noto-sans-kr) text-sm text-text-primary/40 hover:text-text-primary/70 transition-colors tracking-wide"
             >
               {link}
             </Link>
