@@ -56,6 +56,7 @@ src/
 ```
 
 > Next.js의 `app/` 폴더와 FSD의 `pages/` 레이어가 충돌하지 않도록 pages 레이어를 `views/`로 명명합니다.
+> fsd 폴더 구조에서 `widgets/` 폴더 미사용(skills 폴더에 반영)
 
 ---
 
