@@ -20,7 +20,7 @@ export function Footer() {
           ))}
         </nav>
 
-        <p className="font-[family-name:var(--font-noto-sans-kr)] text-sm text-text-primary/40 tracking-wide">
+        <p className="font-(family-name:--font-noto-sans-kr) text-sm text-text-primary/40 tracking-wide">
           © 2026 CodeLens Obsidian Studio. Precision in every fret.
         </p>
       </div>
