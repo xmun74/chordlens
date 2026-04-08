@@ -8,20 +8,8 @@ export function Footer() {
           CodeLens
         </Link>
 
-        <nav className="flex items-center gap-8">
-          {["Privacy", "Terms", "Support", "API"].map((link) => (
-            <Link
-              key={link}
-              href={`/${link.toLowerCase()}`}
-              className="font-(family-name:--font-noto-sans-kr) text-sm text-text-primary/40 hover:text-text-primary/70 transition-colors tracking-wide"
-            >
-              {link}
-            </Link>
-          ))}
-        </nav>
-
         <p className="font-(family-name:--font-noto-sans-kr) text-sm text-text-primary/40 tracking-wide">
-          © 2026 CodeLens Obsidian Studio. Precision in every fret.
+          © 2026 CodeLens
         </p>
       </div>
     </footer>
