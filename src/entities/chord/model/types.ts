@@ -1,9 +1,1 @@
-export interface ChordEntry {
-  time: string;
-  chord: string;
-}
-
-export interface ChordDiagramProps {
-  chordName: string;
-  isActive?: boolean;
-}
+export type { ChordEntry } from "@/shared/model";

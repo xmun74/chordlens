@@ -1,5 +1,6 @@
-import { ResultPage } from "@/views/result/ui/ResultPage";
-import { railwayFetch } from "@/shared/api/railwayClient";
+import { cache } from "react";
+import { ResultPage } from "@/views/result";
+import { railwayFetch } from "@/shared/api";
 import type { ChordResult } from "@/shared/model";
 import { notFound } from "next/navigation";
 
@@ -7,13 +8,13 @@ interface Props {
   params: Promise<{ id: string }>;
 }
 
-async function getResult(id: string): Promise<ChordResult | null> {
+const getResult = cache(async (id: string): Promise<ChordResult | null> => {
   try {
     return await railwayFetch<ChordResult>(`/result/${id}`);
   } catch {
     return null;
   }
-}
+});
 
 export default async function ResultRoute({ params }: Props) {
   const { id } = await params;

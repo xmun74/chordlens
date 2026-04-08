@@ -73,6 +73,7 @@ export function UrlInputForm({ onSubmit, isLoading = false }: Props) {
           stroke="currentColor"
           strokeWidth="1.5"
           strokeLinecap="round"
+          aria-hidden="true"
         >
           <path d="M7.5 10.5a4.5 4.5 0 0 0 6.364 0l2.122-2.121a4.5 4.5 0 0 0-6.364-6.364L8.136 3.5" />
           <path d="M10.5 7.5a4.5 4.5 0 0 0-6.364 0L2.014 9.621a4.5 4.5 0 0 0 6.364 6.364l1.477-1.477" />
@@ -93,6 +94,7 @@ export function UrlInputForm({ onSubmit, isLoading = false }: Props) {
 
         {url && (
           <button
+            type="button"
             onClick={() => {
               setUrl("");
               setError("");
@@ -148,6 +150,7 @@ export function UrlInputForm({ onSubmit, isLoading = false }: Props) {
           strokeWidth="1.5"
           strokeLinecap="round"
           strokeLinejoin="round"
+          aria-hidden="true"
         >
           <path d="M12 27V9l14-3v18" />
           <circle cx="9" cy="27" r="3" />

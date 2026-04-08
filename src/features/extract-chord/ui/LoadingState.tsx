@@ -1,6 +1,6 @@
 "use client";
 
-import type { ExtractStatus } from "@/shared/model";
+import type { ExtractStatus } from "../model/types";
 
 interface Step {
   id: ExtractStatus;

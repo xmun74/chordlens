@@ -1,7 +1,8 @@
 import { useMutation } from "@tanstack/react-query";
 import { useState, useRef } from "react";
 import { extractChords } from "../api/extractChord";
-import type { ChordResult, ExtractStatus } from "@/shared/model";
+import type { ChordResult } from "@/shared/model";
+import type { ExtractStatus } from "./types";
 
 interface UseExtractChordReturn {
   mutate: (url: string) => void;

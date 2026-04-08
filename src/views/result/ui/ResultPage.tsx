@@ -1,10 +1,9 @@
 "use client";
 
 import { useState } from "react";
-import { ChordTimeline } from "@/entities/chord/ui/ChordTimeline";
-import { ChordGrid } from "@/entities/chord/ui/ChordGrid";
-import { VideoCard } from "@/entities/video/ui/VideoCard";
-import { ShareButton } from "@/features/share-result/ui/ShareButton";
+import { ChordTimeline, ChordGrid } from "@/entities/chord";
+import { VideoCard } from "@/entities/video";
+import { ShareButton } from "@/features/share-result";
 import type { ChordResult } from "@/shared/model";
 
 interface Props {

@@ -1,22 +1,27 @@
 "use client";
 
-import { useState } from "react";
-import { useExtractChord } from "@/features/extract-chord/model/useExtractChord";
-import { UrlInputForm } from "@/features/extract-chord/ui/UrlInputForm";
-import { LoadingState } from "@/features/extract-chord/ui/LoadingState";
-import { ShareButton } from "@/features/share-result/ui/ShareButton";
-import { ChordTimeline } from "@/entities/chord/ui/ChordTimeline";
-import { ChordGrid } from "@/entities/chord/ui/ChordGrid";
-import { VideoCard } from "@/entities/video/ui/VideoCard";
+import { useState, useCallback } from "react";
+import { useExtractChord, UrlInputForm, LoadingState } from "@/features/extract-chord";
+import { ShareButton } from "@/features/share-result";
+import { ChordTimeline, ChordGrid } from "@/entities/chord";
+import { VideoCard } from "@/entities/video";
 
 export function HomePage() {
   const [activeChord, setActiveChord] = useState<string | null>(null);
   const mutation = useExtractChord();
 
-  const handleSubmit = (url: string) => {
-    setActiveChord(null);
-    mutation.mutate(url);
-  };
+  const handleSubmit = useCallback(
+    (url: string) => {
+      setActiveChord(null);
+      mutation.mutate(url);
+    },
+    [mutation],
+  );
+
+  const handleShare = useCallback(() => {
+    const id = mutation.data?.id;
+    if (id) navigator.clipboard?.writeText(`${window.location.origin}/result/${id}`);
+  }, [mutation.data?.id]);
 
   return (
     <main className="min-h-screen">
@@ -127,10 +132,7 @@ export function HomePage() {
               tempo: mutation.data.tempo,
               key: mutation.data.key,
             }}
-            onShare={() => {
-              const id = mutation.data!.id;
-              if (id) navigator.clipboard?.writeText(`${window.location.origin}/result/${id}`);
-            }}
+            onShare={handleShare}
           />
 
           {/* Timeline */}

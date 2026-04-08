@@ -26,8 +26,9 @@ export function ChordTimeline({ chords, activeChord, onSelect }: Props) {
         </h2>
         <div className="flex items-center gap-2">
           <button
+            type="button"
             onClick={() => scroll("left")}
-            className="flex h-[18px] w-[18px] items-center justify-center rounded text-text-secondary hover:text-text-primary transition-colors"
+            className="flex h-11 w-11 items-center justify-center rounded text-text-secondary hover:text-text-primary transition-colors"
             aria-label="이전으로 스크롤"
           >
             <svg
@@ -43,8 +44,9 @@ export function ChordTimeline({ chords, activeChord, onSelect }: Props) {
             </svg>
           </button>
           <button
+            type="button"
             onClick={() => scroll("right")}
-            className="flex h-[18px] w-[18px] items-center justify-center rounded text-text-secondary hover:text-text-primary transition-colors"
+            className="flex h-11 w-11 items-center justify-center rounded text-text-secondary hover:text-text-primary transition-colors"
             aria-label="다음으로 스크롤"
           >
             <svg

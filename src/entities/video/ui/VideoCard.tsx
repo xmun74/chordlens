@@ -22,7 +22,7 @@ export function VideoCard({ meta, onShare }: Props) {
         {/* Overlay */}
         <div className="absolute inset-0 bg-bg-base/40 flex items-center justify-center">
           <div className="flex h-10 w-10 items-center justify-center rounded-full bg-bg-base/60">
-            <svg width="16" height="16" viewBox="0 0 16 16" fill="#e2e2eb">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="#e2e2eb" aria-hidden="true">
               <path d="M5 3l9 5-9 5V3z" />
             </svg>
           </div>
@@ -40,12 +40,18 @@ export function VideoCard({ meta, onShare }: Props) {
               </span>
             </div>
             {/* Title */}
-            <h1 className="font-[family-name:var(--font-space-grotesk)] text-2xl sm:text-3xl font-bold leading-tight tracking-tight text-text-primary max-w-lg">
+            <h2 className="font-[family-name:var(--font-space-grotesk)] text-2xl sm:text-3xl font-bold leading-tight tracking-tight text-text-primary max-w-lg">
               {meta.title}
-            </h1>
+            </h2>
             {/* Channel */}
             <div className="mt-2 flex items-center gap-2 text-text-secondary">
-              <svg width="10" height="10" viewBox="0 0 10 10" fill="currentColor">
+              <svg
+                width="10"
+                height="10"
+                viewBox="0 0 10 10"
+                fill="currentColor"
+                aria-hidden="true"
+              >
                 <circle cx="5" cy="5" r="4.5" />
               </svg>
               <span className="text-base">{meta.channelName}</span>

@@ -210,7 +210,7 @@ export function ChordDiagram({ chordName, isActive = false }: Props) {
       </div>
 
       {/* Diagram */}
-      <div className="mx-auto rounded-lg bg-bg-dark px-4 py-3 mb-4 mx-6">
+      <div className="mx-6 rounded-lg bg-bg-dark px-4 py-3 mb-4">
         <div ref={ref} />
       </div>
     </article>

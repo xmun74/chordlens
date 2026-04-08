@@ -12,11 +12,3 @@ export interface ChordResult {
   key?: string;
   chords: ChordEntry[];
 }
-
-export type ExtractStatus = "idle" | "extracting" | "recognizing" | "done" | "error";
-
-export interface VideoMeta {
-  title: string;
-  thumbnailUrl: string;
-  channelName: string;
-}

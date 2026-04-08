@@ -39,6 +39,7 @@ export function Header() {
         <div className="ml-auto flex items-center gap-4">
           {/* Bell icon */}
           <button
+            type="button"
             className="text-text-secondary hover:text-text-primary transition-colors"
             aria-label="알림"
           >
@@ -49,6 +50,7 @@ export function Header() {
               fill="none"
               stroke="currentColor"
               strokeWidth="1.5"
+              aria-hidden="true"
             >
               <path
                 d="M10 2a6 6 0 0 0-6 6v3l-1.5 2.5h15L16 11V8a6 6 0 0 0-6-6z"
@@ -61,7 +63,7 @@ export function Header() {
 
           {/* User avatar */}
           <div className="h-8 w-8 rounded-full border border-border bg-bg-input overflow-hidden flex items-center justify-center text-xs text-text-secondary">
-            <svg width="18" height="18" viewBox="0 0 18 18" fill="currentColor">
+            <svg width="18" height="18" viewBox="0 0 18 18" fill="currentColor" aria-hidden="true">
               <circle cx="9" cy="6" r="3.5" />
               <path d="M2 16c0-3.866 3.134-7 7-7s7 3.134 7 7" />
             </svg>
