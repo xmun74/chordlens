@@ -13,7 +13,7 @@ export function ChordGrid({ allChords, activeChordIdx }: Props) {
 
   return (
     <section>
-      <h2 className="font-[family-name:var(--font-space-grotesk)] text-xl font-bold text-text-primary mb-6">
+      <h2 className="font-(family-name:--font-space-grotesk) text-xl font-bold text-text-primary mb-6">
         Vocabulary
       </h2>
 
@@ -22,13 +22,13 @@ export function ChordGrid({ allChords, activeChordIdx }: Props) {
         <div className="flex flex-col items-center gap-2 opacity-80 transition-opacity duration-300">
           {prev ? (
             <>
-              <span className="font-[family-name:var(--font-space-mono)] text-xs text-text-secondary/60 tabular-nums">
+              <span className="font-(family-name:--font-space-mono) text-xs text-text-secondary/60 tabular-nums">
                 {prev.time}
               </span>
               <ChordDiagram chordName={prev.chord} size="sm" />
             </>
           ) : (
-            <div className="w-[120px] h-[160px]" />
+            <div className="w-[202px] h-[160px]" />
           )}
         </div>
 
@@ -36,7 +36,7 @@ export function ChordGrid({ allChords, activeChordIdx }: Props) {
         <div className="flex flex-col items-center gap-2 transition-all duration-300 scale-110">
           {current ? (
             <>
-              <span className="font-[family-name:var(--font-space-mono)] text-xs text-accent-light/70 tabular-nums">
+              <span className="font-[(--font-space-mono)] text-xs text-accent-light/70 tabular-nums">
                 {current.time}
               </span>
               <ChordDiagram chordName={current.chord} isActive size="lg" />
@@ -50,13 +50,13 @@ export function ChordGrid({ allChords, activeChordIdx }: Props) {
         <div className="flex flex-col items-center gap-2 opacity-80 transition-opacity duration-300">
           {next ? (
             <>
-              <span className="font-[family-name:var(--font-space-mono)] text-xs text-text-secondary/60 tabular-nums">
+              <span className="font-(family-name:--font-space-mono) text-xs text-text-secondary/60 tabular-nums">
                 {next.time}
               </span>
               <ChordDiagram chordName={next.chord} size="sm" />
             </>
           ) : (
-            <div className="w-[120px] h-[160px]" />
+            <div className="w-[202px] h-[160px]" />
           )}
         </div>
       </div>
