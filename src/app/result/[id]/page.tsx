@@ -32,7 +32,7 @@ export async function generateMetadata({ params }: Props) {
   if (!result) return {};
 
   return {
-    title: `${result.title} — CodeLens`,
+    title: `${result.title} — ChordLens`,
     description: `Key: ${result.key ?? "?"} · Tempo: ${result.tempo ?? "?"} BPM`,
   };
 }

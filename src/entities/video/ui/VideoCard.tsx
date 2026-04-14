@@ -10,7 +10,7 @@ export function VideoCard({ meta, onShare }: Props) {
   return (
     <div className="flex rounded-2xl bg-bg-card overflow-hidden">
       {/* Thumbnail */}
-      <div className="relative hidden sm:block shrink-0 w-64 h-[144px] rounded-xl overflow-hidden m-6">
+      <div className="relative hidden sm:block shrink-0 w-64 h-[120px] rounded-xl overflow-hidden m-6">
         <Image
           src={meta.thumbnailUrl}
           alt={meta.title}
@@ -35,26 +35,17 @@ export function VideoCard({ meta, onShare }: Props) {
           <div>
             {/* Badge */}
             <div className="mb-2 inline-flex items-center rounded-full bg-accent-light/10 px-3 py-1">
-              <span className="font-[family-name:var(--font-space-grotesk)] text-xs font-bold tracking-wide text-accent-light">
+              <span className="font-(family-name:--font-space-grotesk) text-xs font-bold tracking-wide text-accent-light">
                 YOUTUBE SOURCE
               </span>
             </div>
             {/* Title */}
-            <h2 className="font-[family-name:var(--font-space-grotesk)] text-2xl sm:text-3xl font-bold leading-tight tracking-tight text-text-primary max-w-lg">
+            <h2 className="font-(family-name:--font-space-grotesk) text-xl font-bold leading-tight tracking-tight text-text-primary max-w-lg">
               {meta.title}
             </h2>
             {/* Channel */}
             <div className="mt-2 flex items-center gap-2 text-text-secondary">
-              <svg
-                width="10"
-                height="10"
-                viewBox="0 0 10 10"
-                fill="currentColor"
-                aria-hidden="true"
-              >
-                <circle cx="5" cy="5" r="4.5" />
-              </svg>
-              <span className="text-base">{meta.channelName}</span>
+              <span className="text-sm">{meta.channelName}</span>
             </div>
           </div>
 

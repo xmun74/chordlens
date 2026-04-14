@@ -3,16 +3,23 @@
 import { useState, useCallback } from "react";
 import { useExtractChord, UrlInputForm, LoadingState } from "@/features/extract-chord";
 import { ShareButton } from "@/features/share-result";
-import { ChordTimeline, ChordGrid } from "@/entities/chord";
+import { ChordGrid, LyricsChordPlayer } from "@/entities/chord";
 import { VideoCard } from "@/entities/video";
 
 export function HomePage() {
   const [activeChord, setActiveChord] = useState<string | null>(null);
+  const [activeChordIdx, setActiveChordIdx] = useState(0);
   const mutation = useExtractChord();
+
+  const handleSelect = useCallback((chord: string, idx: number) => {
+    setActiveChord(chord);
+    setActiveChordIdx(idx);
+  }, []);
 
   const handleSubmit = useCallback(
     (url: string) => {
       setActiveChord(null);
+      setActiveChordIdx(0);
       mutation.mutate(url);
     },
     [mutation],
@@ -135,15 +142,17 @@ export function HomePage() {
             onShare={handleShare}
           />
 
-          {/* Timeline */}
-          <ChordTimeline
+          {/* Lyrics + Chord 스크롤 플레이어 */}
+          <LyricsChordPlayer
+            videoId={mutation.data.videoId}
+            lyrics={mutation.data.lyrics ?? undefined}
             chords={mutation.data.chords}
             activeChord={activeChord}
-            onSelect={setActiveChord}
+            onSelect={handleSelect}
           />
 
           {/* Chord grid */}
-          <ChordGrid chords={mutation.data.chords.map((c) => c.chord)} activeChord={activeChord} />
+          <ChordGrid allChords={mutation.data.chords} activeChordIdx={activeChordIdx} />
 
           {/* Share CTA */}
           <div className="flex justify-center pt-4">

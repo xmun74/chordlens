@@ -1,7 +1,7 @@
 "use client";
 
-import { useState } from "react";
-import { ChordTimeline, ChordGrid } from "@/entities/chord";
+import { useState, useCallback } from "react";
+import { ChordGrid, LyricsChordPlayer } from "@/entities/chord";
 import { VideoCard } from "@/entities/video";
 import { ShareButton } from "@/features/share-result";
 import type { ChordResult } from "@/shared/model";
@@ -12,6 +12,12 @@ interface Props {
 
 export function ResultPage({ result }: Props) {
   const [activeChord, setActiveChord] = useState<string | null>(null);
+  const [activeChordIdx, setActiveChordIdx] = useState(0);
+
+  const handleSelect = useCallback((chord: string, idx: number) => {
+    setActiveChord(chord);
+    setActiveChordIdx(idx);
+  }, []);
 
   return (
     <main className="mx-auto max-w-7xl px-8 py-10 flex flex-col gap-8">
@@ -25,9 +31,15 @@ export function ResultPage({ result }: Props) {
         }}
       />
 
-      <ChordTimeline chords={result.chords} activeChord={activeChord} onSelect={setActiveChord} />
+      <LyricsChordPlayer
+        videoId={result.videoId}
+        lyrics={result.lyrics ?? undefined}
+        chords={result.chords}
+        activeChord={activeChord}
+        onSelect={handleSelect}
+      />
 
-      <ChordGrid chords={result.chords.map((c) => c.chord)} activeChord={activeChord} />
+      <ChordGrid allChords={result.chords} activeChordIdx={activeChordIdx} />
 
       <div className="flex justify-center pt-4">
         <ShareButton />

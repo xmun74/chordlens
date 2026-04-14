@@ -1,6 +1,6 @@
 # Claude Code Skills
 
-이 프로젝트(codelens)에 구성된 Claude Code 스킬 목록과 사용법.
+이 프로젝트(chordlens)에 구성된 Claude Code 스킬 목록과 사용법.
 
 ## 스킬 목록
 

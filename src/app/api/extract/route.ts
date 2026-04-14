@@ -1,24 +1,38 @@
 import { NextRequest, NextResponse } from "next/server";
-import { MOCK_RESULT } from "@/shared/lib/mockData";
 
-// 실제 백엔드가 없을 때 Mock 데이터를 반환하는 로컬 API Route
 export async function POST(req: NextRequest) {
   const { url } = await req.json().catch(() => ({ url: "" }));
 
-  // 실제 Railway URL이 설정된 경우 프록시 (선택적)
-  const railwayUrl = process.env.RAILWAY_URL; // 서버 전용 변수 (public 아님)
-  if (railwayUrl?.startsWith("http")) {
-    const upstream = await fetch(`${railwayUrl}/extract`, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ url }),
-    });
-    const data = await upstream.json();
-    return NextResponse.json(data, { status: upstream.status });
+  const apiUrl = process.env.NEXT_PUBLIC_RAILWAY_URL;
+  if (!apiUrl?.startsWith("http")) {
+    return NextResponse.json(
+      { detail: "API URL이 설정되지 않았습니다. .env의 NEXT_PUBLIC_RAILWAY_URL을 확인하세요." },
+      { status: 503 },
+    );
   }
 
-  // Mock: 1초 딜레이 후 응답 (실제 처리 시간은 프론트에서 시뮬레이션)
-  await new Promise((r) => setTimeout(r, 1000));
+  const upstream = await fetch(`${apiUrl}/extract`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ youtube_url: url }),
+  });
 
-  return NextResponse.json(MOCK_RESULT);
+  if (!upstream.ok) {
+    const error = await upstream.json().catch(() => ({ detail: upstream.statusText }));
+    return NextResponse.json(error, { status: upstream.status });
+  }
+
+  const data = await upstream.json();
+
+  // 백엔드 snake_case → 프론트 camelCase 변환
+  return NextResponse.json({
+    id: data.id,
+    videoId: data.video_id,
+    title: data.title,
+    channelName: data.channel_name,
+    thumbnailUrl: data.thumbnail_url,
+    chords: data.chords,
+    lyrics: data.lyrics ?? null,
+    cached: data.cached,
+  });
 }

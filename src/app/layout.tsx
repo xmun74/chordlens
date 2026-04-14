@@ -32,11 +32,11 @@ const notoSansKR = Noto_Sans_KR({
 });
 
 export const metadata: Metadata = {
-  title: "CodeLens — Learn guitar chords from any YouTube video",
+  title: "ChordLens — Learn guitar chords from any YouTube video",
   description:
     "Unlock the secrets of your favorite tracks. Paste a YouTube link to get high-fidelity chord analysis in seconds.",
   openGraph: {
-    title: "CodeLens",
+    title: "ChordLens",
     description: "Learn guitar chords from any YouTube video.",
     type: "website",
   },

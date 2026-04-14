@@ -5,7 +5,14 @@ import { useEffect, useRef } from "react";
 interface Props {
   chordName: string;
   isActive?: boolean;
+  size?: "sm" | "md" | "lg";
 }
+
+const SIZES = {
+  sm: { w: 120, h: 136 },
+  md: { w: 160, h: 180 },
+  lg: { w: 190, h: 214 },
+};
 
 // Finger positions for common chords: [string (1=high e, 6=low E), fret]
 const CHORD_DATA: Record<
@@ -117,8 +124,9 @@ const CHORD_DATA: Record<
   },
 };
 
-export function ChordDiagram({ chordName, isActive = false }: Props) {
+export function ChordDiagram({ chordName, isActive = false, size = "md" }: Props) {
   const ref = useRef<HTMLDivElement>(null);
+  const { w, h } = SIZES[size];
 
   useEffect(() => {
     if (!ref.current) return;
@@ -135,8 +143,8 @@ export function ChordDiagram({ chordName, isActive = false }: Props) {
         const position = data?.position ?? 1;
 
         const box = new ChordBox(ref.current, {
-          width: 160,
-          height: 180,
+          width: w,
+          height: h,
           strokeColor: "#434654",
           textColor: "#c3c6d7",
           stringColor: "#434654",
@@ -184,7 +192,7 @@ export function ChordDiagram({ chordName, isActive = false }: Props) {
     };
 
     drawChord();
-  }, [chordName, isActive]);
+  }, [chordName, isActive, w, h]);
 
   return (
     <article

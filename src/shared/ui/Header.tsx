@@ -10,7 +10,7 @@ export function Header() {
             href="/"
             className="font-(family-name:--font-space-grotesk) text-2xl font-bold tracking-[-0.05em] text-text-primary"
           >
-            CodeLens
+            ChordLens
           </Link>
 
           <div className="hidden sm:flex items-center gap-6">

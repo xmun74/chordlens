@@ -1,4 +1,4 @@
-# CodeLens
+# ChordLens
 
 YouTube 영상에서 기타 코드를 자동 분석해주는 웹 앱입니다.
 링크를 붙여넣으면 코드 진행, 타임라인, 다이어그램을 즉시 확인할 수 있습니다.
@@ -99,4 +99,4 @@ pnpm fsd            # Steiger FSD 아키텍처 검사
 
 ---
 
-© 2026 CodeLens.
+© 2026 ChordLens.

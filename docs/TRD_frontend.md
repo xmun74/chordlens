@@ -1,4 +1,4 @@
-# CodeLens — Frontend Technical Requirements Document (TRD)
+# ChordLens — Frontend Technical Requirements Document (TRD)
 
 ---
 
@@ -7,7 +7,7 @@
 | 항목       | 내용       |
 | ---------- | ---------- |
 | 문서 번호  | TRD-FE-001 |
-| 프로젝트명 | CodeLens   |
+| 프로젝트명 | ChordLens  |
 | 작성일     | 2026-04-06 |
 | 상태       | Draft      |
 | 대상       | 프론트엔드 |
@@ -45,7 +45,7 @@ Next.js의 라우팅 컨벤션(`app/`)은 유지하되, 실제 UI 로직은 FSD 
 > 상위 레이어는 하위 레이어를 import할 수 있지만, 역방향 import는 금지한다.
 
 ```
-codelens-frontend/
+chordlens-frontend/
 │
 ├── app/                                   # Next.js App Router (라우팅 전용)
 │   ├── layout.tsx                         # 루트 레이아웃 (폰트, Provider 등록)
@@ -157,7 +157,7 @@ idle → loading → success
 export async function generateMetadata({ params }): Promise<Metadata> {
   const result = await getResultById(params.id);
   return {
-    title: `${result.title} — CodeLens`,
+    title: `${result.title} — ChordLens`,
     description: `${result.chords.length}개 코드 추출됨`,
     openGraph: {
       title: result.title,
@@ -357,7 +357,7 @@ export type ExtractStatus = "idle" | "extracting" | "recognizing" | "done" | "er
 ```bash
 # .env
 
-NEXT_PUBLIC_RAILWAY_URL=https://codelens-server.railway.app
+NEXT_PUBLIC_RAILWAY_URL=https://chordlens-server.railway.app
 NEXT_PUBLIC_SUPABASE_URL=https://xxxx.supabase.co
 NEXT_PUBLIC_SUPABASE_ANON_KEY=your-anon-key
 ```

@@ -187,12 +187,12 @@ export function UrlInputForm({ onSubmit, isLoading = false }: Props) {
             height="22"
             viewBox="0 0 22 22"
             fill="none"
-            stroke="currentColor"
-            strokeWidth="2"
-            strokeLinecap="round"
+            xmlns="http://www.w3.org/2000/svg"
           >
-            <circle cx="11" cy="11" r="4" />
-            <path d="M11 2v2M11 18v2M2 11h2M18 11h2M4.93 4.93l1.41 1.41M15.66 15.66l1.41 1.41M4.93 17.07l1.41-1.41M15.66 6.34l1.41-1.41" />
+            <path
+              d="M18 8L16.75 5.25L14 4L16.75 2.75L18 0L19.25 2.75L22 4L19.25 5.25L18 8ZM18 22L16.75 19.25L14 18L16.75 16.75L18 14L19.25 16.75L22 18L19.25 19.25L18 22ZM8 19L5.5 13.5L0 11L5.5 8.5L8 3L10.5 8.5L16 11L10.5 13.5L8 19ZM8 14.15L9 12L11.15 11L9 10L8 7.85L7 10L4.85 11L7 12L8 14.15Z"
+              fill="#002A78"
+            />
           </svg>
         )}
         Analyze Chords
