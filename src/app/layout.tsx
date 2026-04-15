@@ -54,6 +54,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         notoSansKR.variable,
       ].join(" ")}
     >
+      <head>
+        <link rel="icon" href="/favicon.ico" sizes="any" />
+      </head>
+
       <body className="min-h-screen bg-bg-base text-text-primary antialiased">
         <Providers>
           <Header />
