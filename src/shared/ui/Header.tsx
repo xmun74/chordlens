@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 
 export function Header() {
@@ -8,8 +9,9 @@ export function Header() {
         <div className="flex items-center gap-12">
           <Link
             href="/"
-            className="font-(family-name:--font-space-grotesk) text-2xl font-bold tracking-[-0.05em] text-text-primary"
+            className="flex items-center gap-2 font-(family-name:--font-space-grotesk) text-2xl font-bold tracking-[-0.05em] text-text-primary"
           >
+            <Image src="/icons/logo.svg" alt="ChordLens Logo Image" width={24} height={24} />
             ChordLens
           </Link>
 
