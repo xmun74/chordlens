@@ -281,7 +281,7 @@ export function LyricsChordPlayer({ videoId, lyrics, chords, activeChord, onSele
                   />
                 </div>
                 {/* 시간 */}
-                <span className="font-[family-name:var(--font-space-mono)] text-[10px] text-text-secondary/50 tabular-nums">
+                <span className="font-(family-name:--font-space-mono) text-[10px] text-text-secondary/50 tabular-nums">
                   {formatTime(currentTime)}
                   {duration > 0 ? ` / ${formatTime(duration)}` : ""}
                 </span>
@@ -296,12 +296,12 @@ export function LyricsChordPlayer({ videoId, lyrics, chords, activeChord, onSele
               className="absolute inset-y-0 z-10 pointer-events-none"
               style={{ left: `${PLAYHEAD_LEFT}px` }}
             >
-              <div className="w-px h-full bg-gradient-to-b from-accent-light/80 to-accent-light/20" />
+              <div className="w-px h-full bg-linear-to-b from-accent-light/80 to-accent-light/20" />
             </div>
 
             {/* 페이드 */}
-            <div className="absolute inset-y-0 left-0 w-10 bg-gradient-to-r from-bg-dark to-transparent z-20 pointer-events-none" />
-            <div className="absolute inset-y-0 right-0 w-10 bg-gradient-to-l from-bg-dark to-transparent z-20 pointer-events-none" />
+            <div className="absolute inset-y-0 left-0 w-10 bg-linear-to-r from-bg-dark to-transparent z-20 pointer-events-none" />
+            <div className="absolute inset-y-0 right-0 w-10 bg-linear-to-l from-bg-dark to-transparent z-20 pointer-events-none" />
 
             {/* 스크롤 컨테이너 */}
             <div
@@ -309,11 +309,10 @@ export function LyricsChordPlayer({ videoId, lyrics, chords, activeChord, onSele
               onScroll={handleScroll}
               onPointerDown={handlePointerDown}
               onPointerUp={handlePointerUp}
-              className="overflow-x-auto"
+              className="overflow-x-auto h-full"
               style={{
-                height: "120px",
                 scrollbarWidth: "thin",
-                scrollbarColor: "rgba(97,139,255,0.25) transparent",
+                scrollbarColor: "#b4c5ff transparent",
               }}
             >
               <div className="relative h-full" style={{ width: `${totalWidth}px` }}>
@@ -325,7 +324,7 @@ export function LyricsChordPlayer({ videoId, lyrics, chords, activeChord, onSele
                     style={{ left: `${PLAYHEAD_LEFT + t * PX_PER_SEC}px`, bottom: "6px" }}
                   >
                     <div className="w-px h-2 bg-white/10" />
-                    <span className="font-[family-name:var(--font-space-mono)] text-[9px] text-text-secondary/30 mt-0.5 tabular-nums">
+                    <span className="font-(family-name:--font-space-mono) text-[9px] text-text-secondary/30 mt-0.5 tabular-nums">
                       {`${Math.floor(t / 60)}:${String(t % 60).padStart(2, "0")}`}
                     </span>
                   </div>
@@ -345,9 +344,9 @@ export function LyricsChordPlayer({ videoId, lyrics, chords, activeChord, onSele
                       <button
                         onClick={() => onSelect?.(entry.chord, i)}
                         className={[
-                          "font-[family-name:var(--font-space-mono)] text-sm font-bold px-2.5 py-1 rounded-lg transition-all whitespace-nowrap focus:outline-none",
+                          "font-(family-name:--font-space-mono) text-sm font-bold px-2.5 py-1 rounded-lg transition-all whitespace-nowrap focus:outline-none",
                           isActive
-                            ? "text-accent-deep bg-gradient-to-br from-accent-light to-accent shadow-[0_0_12px_rgba(97,139,255,0.5)]"
+                            ? "text-accent-deep bg-linear-to-br from-accent-light to-accent shadow-[0_0_12px_rgba(97,139,255,0.5)]"
                             : isCurrent
                               ? "text-white bg-accent/50 border border-accent-light/80 scale-110"
                               : "text-accent-light bg-accent-light/15 border border-accent-light/40 hover:bg-accent-light/25 hover:scale-105",
