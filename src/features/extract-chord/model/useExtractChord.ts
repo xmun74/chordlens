@@ -33,32 +33,38 @@ export function useExtractChord(): UseExtractChordReturn {
 
     onMutate: () => {
       clearTimers();
-      // 단계 1: Extracting Audio (0~1.0초)
-      setPipelineStatus("extracting");
-      setProgress(10);
-
+      // 200ms 후에도 응답이 없으면 캐시 미스 → 로딩 애니메이션 시작
+      // 캐시 히트는 200ms 내에 onSuccess가 타이머를 모두 취소함
       timerRefs.current.push(
-        setTimeout(() => setProgress(30), 600),
-        // 단계 2: Analyzing Chords (1.0~2.5초)
+        setTimeout(() => {
+          setPipelineStatus("extracting");
+          setProgress(10);
+        }, 200),
+        setTimeout(() => setProgress(30), 800),
         setTimeout(() => {
           setPipelineStatus("recognizing");
           setProgress(50);
-        }, 1000),
-        setTimeout(() => setProgress(68), 1600),
-        setTimeout(() => setProgress(78), 2000),
-        // 단계 3: Finalizing Tab (2.5~3.5초)
+        }, 1200),
+        setTimeout(() => setProgress(68), 1800),
+        setTimeout(() => setProgress(78), 2200),
         setTimeout(() => {
           setPipelineStatus("done");
           setProgress(90);
-        }, 2500),
-        setTimeout(() => setProgress(100), 3200),
+        }, 2700),
+        setTimeout(() => setProgress(100), 3400),
       );
     },
 
-    onSuccess: () => {
+    onSuccess: (data) => {
       clearTimers();
-      setPipelineStatus("done");
-      setProgress(100);
+      if (data.cached) {
+        // 캐시 히트: 상태를 idle로 유지 → LoadingState가 노출되지 않음
+        setPipelineStatus("idle");
+        setProgress(0);
+      } else {
+        setPipelineStatus("done");
+        setProgress(100);
+      }
     },
 
     onError: (error) => {

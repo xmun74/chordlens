@@ -96,8 +96,8 @@ export function HomePage() {
         </div>
       </section>
 
-      {/* ─── Loading State ─── */}
-      {mutation.isPending && (
+      {/* ─── Loading State (캐시 히트 시 pipelineStatus가 idle이므로 렌더링 안 됨) ─── */}
+      {mutation.isPending && mutation.pipelineStatus !== "idle" && (
         <section className="mx-auto max-w-7xl px-8 pb-8">
           <LoadingState status={mutation.pipelineStatus} progress={mutation.progress} />
         </section>

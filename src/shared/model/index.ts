@@ -9,6 +9,7 @@ export interface LyricLine {
 }
 
 export interface ChordResult {
+  cached: boolean;
   id: string;
   videoId: string;
   title: string;
