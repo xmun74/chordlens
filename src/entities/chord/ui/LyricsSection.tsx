@@ -28,9 +28,7 @@ function getChordsForLine(line: LyricLine, lines: LyricLine[], chords: ChordEntr
 export function LyricsSection({ lyrics, chords, activeChord, onSelect }: Props) {
   return (
     <section>
-      <h2 className="font-[family-name:var(--font-space-grotesk)] text-xl font-bold text-text-primary mb-4">
-        Lyrics & Chords
-      </h2>
+      <h2 className="font-heading text-xl font-bold text-text-primary mb-4">Lyrics & Chords</h2>
 
       <div className="rounded-2xl bg-bg-dark px-6 py-6 flex flex-col gap-6">
         {lyrics.map((line, idx) => {
@@ -39,7 +37,7 @@ export function LyricsSection({ lyrics, chords, activeChord, onSelect }: Props) 
           return (
             <div key={`${line.time}-${idx}`} className="flex flex-col gap-2">
               {/* 가사 */}
-              <p className="font-[family-name:var(--font-space-grotesk)] text-base text-text-primary leading-relaxed">
+              <p className="font-heading text-base text-text-primary leading-relaxed">
                 {line.text}
               </p>
 
@@ -56,15 +54,13 @@ export function LyricsSection({ lyrics, chords, activeChord, onSelect }: Props) 
                         aria-pressed={isActive}
                         aria-label={`${entry.time} ${entry.chord}`}
                       >
-                        <span className="font-[family-name:var(--font-space-mono)] text-xs text-text-secondary">
-                          {entry.time}
-                        </span>
+                        <span className="font-mono text-xs text-text-secondary">{entry.time}</span>
                         {isActive ? (
-                          <span className="font-[family-name:var(--font-space-mono)] text-sm font-bold text-accent-deep bg-gradient-to-br from-accent-light to-accent px-2.5 py-1 rounded-lg shadow-[0_0_10px_rgba(97,139,255,0.4)]">
+                          <span className="font-mono text-sm font-bold text-accent-deep bg-gradient-to-br from-accent-light to-accent px-2.5 py-1 rounded-lg shadow-[0_0_10px_rgba(97,139,255,0.4)]">
                             {entry.chord}
                           </span>
                         ) : (
-                          <span className="font-[family-name:var(--font-space-mono)] text-sm font-bold text-accent-light bg-accent-light/20 border border-accent-light/50 hover:bg-accent-light/30 transition-colors px-2.5 py-1 rounded-lg">
+                          <span className="font-mono text-sm font-bold text-accent-light bg-accent-light/20 border border-accent-light/50 hover:bg-accent-light/30 transition-colors px-2.5 py-1 rounded-lg">
                             {entry.chord}
                           </span>
                         )}

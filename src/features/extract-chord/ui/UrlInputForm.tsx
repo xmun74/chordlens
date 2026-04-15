@@ -156,7 +156,7 @@ export function UrlInputForm({ onSubmit, isLoading = false }: Props) {
           <circle cx="9" cy="27" r="3" />
           <circle cx="23" cy="24" r="3" />
         </svg>
-        <span className="font-[family-name:var(--font-space-grotesk)] text-base text-text-secondary">
+        <span className="font-heading text-base text-text-secondary">
           Drag and drop MP3 or WAV files here
         </span>
       </div>

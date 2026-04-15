@@ -8,9 +8,7 @@ export function Footer() {
           ChordLens
         </Link>
 
-        <p className="font-(family-name:--font-noto-sans-kr) text-sm text-text-primary/40 tracking-wide">
-          © 2026 ChordLens
-        </p>
+        <p className="font-noto text-sm text-text-primary/40 tracking-wide">© 2026 ChordLens</p>
       </div>
     </footer>
   );

@@ -13,16 +13,14 @@ export function ChordGrid({ allChords, activeChordIdx }: Props) {
 
   return (
     <section>
-      <h2 className="font-(family-name:--font-space-grotesk) text-xl font-bold text-text-primary mb-6">
-        Vocabulary
-      </h2>
+      <h2 className="font-heading text-xl font-bold text-text-primary mb-6">Vocabulary</h2>
 
       <div className="flex items-center justify-center gap-6">
         {/* 이전 코드 */}
         <div className="flex flex-col items-center gap-2 opacity-80 transition-opacity duration-300">
           {prev ? (
             <>
-              <span className="font-(family-name:--font-space-mono) text-xs text-text-secondary/60 tabular-nums">
+              <span className="font-mono text-xs text-text-secondary/60 tabular-nums">
                 {prev.time}
               </span>
               <ChordDiagram chordName={prev.chord} size="sm" />
@@ -50,7 +48,7 @@ export function ChordGrid({ allChords, activeChordIdx }: Props) {
         <div className="flex flex-col items-center gap-2 opacity-80 transition-opacity duration-300">
           {next ? (
             <>
-              <span className="font-(family-name:--font-space-mono) text-xs text-text-secondary/60 tabular-nums">
+              <span className="font-mono text-xs text-text-secondary/60 tabular-nums">
                 {next.time}
               </span>
               <ChordDiagram chordName={next.chord} size="sm" />

@@ -35,12 +35,12 @@ export function VideoCard({ meta, onShare }: Props) {
           <div>
             {/* Badge */}
             <div className="mb-2 inline-flex items-center rounded-full bg-accent-light/10 px-3 py-1">
-              <span className="font-(family-name:--font-space-grotesk) text-xs font-bold tracking-wide text-accent-light">
+              <span className="font-heading text-xs font-bold tracking-wide text-accent-light">
                 YOUTUBE SOURCE
               </span>
             </div>
             {/* Title */}
-            <h2 className="font-(family-name:--font-space-grotesk) text-xl font-bold leading-tight tracking-tight text-text-primary max-w-lg">
+            <h2 className="font-heading text-xl font-bold leading-tight tracking-tight text-text-primary max-w-lg">
               {meta.title}
             </h2>
             {/* Channel */}
@@ -80,22 +80,18 @@ export function VideoCard({ meta, onShare }: Props) {
           <div className="mt-4 flex items-center gap-3">
             {meta.tempo && (
               <div className="flex flex-col rounded-lg bg-bg-input px-4 py-2">
-                <span className="font-[family-name:var(--font-inter)] text-[10px] font-bold uppercase tracking-widest text-text-secondary">
+                <span className="font-sans text-[10px] font-bold uppercase tracking-widest text-text-secondary">
                   Tempo
                 </span>
-                <span className="font-[family-name:var(--font-space-mono)] text-lg text-orange">
-                  {meta.tempo} BPM
-                </span>
+                <span className="font-mono text-lg text-orange">{meta.tempo} BPM</span>
               </div>
             )}
             {meta.key && (
               <div className="flex flex-col rounded-lg bg-bg-input px-4 py-2">
-                <span className="font-[family-name:var(--font-inter)] text-[10px] font-bold uppercase tracking-widest text-text-secondary">
+                <span className="font-sans text-[10px] font-bold uppercase tracking-widest text-text-secondary">
                   Key
                 </span>
-                <span className="font-[family-name:var(--font-space-mono)] text-lg text-accent-light">
-                  {meta.key}
-                </span>
+                <span className="font-mono text-lg text-accent-light">{meta.key}</span>
               </div>
             )}
           </div>

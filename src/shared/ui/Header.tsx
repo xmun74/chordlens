@@ -9,7 +9,7 @@ export function Header() {
         <div className="flex items-center gap-12">
           <Link
             href="/"
-            className="flex items-center gap-2 font-(family-name:--font-space-grotesk) text-2xl font-bold tracking-[-0.05em] text-text-primary"
+            className="flex items-center gap-2 font-heading text-2xl font-bold tracking-[-0.05em] text-text-primary"
           >
             <Image src="/icons/logo.svg" alt="ChordLens Logo Image" width={24} height={24} />
             ChordLens
@@ -18,7 +18,7 @@ export function Header() {
           <div className="hidden sm:flex items-center gap-6">
             <Link
               href="/"
-              className="relative font-(family-name:--font-space-grotesk) text-sm text-accent-dark pb-1 after:absolute after:bottom-0 after:left-0 after:h-[2px] after:w-full after:bg-accent-dark after:rounded-full"
+              className="relative font-heading text-sm text-accent-dark pb-1 after:absolute after:bottom-0 after:left-0 after:h-[2px] after:w-full after:bg-accent-dark after:rounded-full"
             >
               Practice
             </Link>

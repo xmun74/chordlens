@@ -208,7 +208,7 @@ export function ChordDiagram({ chordName, isActive = false, size = "md" }: Props
       <div className="flex items-center justify-between px-6 pt-5 pb-2">
         <span
           className={[
-            "font-[family-name:var(--font-space-mono)] text-2xl font-bold",
+            "font-mono text-2xl font-bold",
             isActive ? "text-accent-light" : "text-accent-light",
           ].join(" ")}
         >

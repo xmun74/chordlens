@@ -21,9 +21,7 @@ export function ChordTimeline({ chords, activeChord, onSelect }: Props) {
     <section>
       {/* Header */}
       <div className="flex items-center justify-between mb-4">
-        <h2 className="font-[family-name:var(--font-space-grotesk)] text-xl font-bold text-text-primary">
-          Timeline
-        </h2>
+        <h2 className="font-heading text-xl font-bold text-text-primary">Timeline</h2>
         <div className="flex items-center gap-2">
           <button
             type="button"
@@ -87,20 +85,18 @@ export function ChordTimeline({ chords, activeChord, onSelect }: Props) {
                 aria-label={`${entry.time} ${entry.chord}`}
               >
                 {/* Time label */}
-                <span className="font-[family-name:var(--font-space-mono)] text-xs text-text-secondary">
-                  {entry.time}
-                </span>
+                <span className="font-mono text-xs text-text-secondary">{entry.time}</span>
 
                 {/* Chord chip */}
                 {isActive ? (
                   <div className="flex h-16 w-16 items-center justify-center rounded-xl bg-gradient-to-br from-accent-light to-accent shadow-[0_0_16px_rgba(97,139,255,0.4)]">
-                    <span className="font-[family-name:var(--font-space-mono)] text-2xl font-bold text-accent-deep">
+                    <span className="font-mono text-2xl font-bold text-accent-deep">
                       {entry.chord}
                     </span>
                   </div>
                 ) : (
                   <div className="flex h-16 w-16 items-center justify-center rounded-xl bg-accent-light/20 border border-accent-light/50 hover:bg-accent-light/30 transition-colors">
-                    <span className="font-[family-name:var(--font-space-mono)] text-xl font-bold text-accent-light">
+                    <span className="font-mono text-xl font-bold text-accent-light">
                       {entry.chord}
                     </span>
                   </div>

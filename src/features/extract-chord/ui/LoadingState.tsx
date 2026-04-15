@@ -67,21 +67,6 @@ export function LoadingState({ status, progress }: Props) {
 
   return (
     <>
-      <style>{`
-        @keyframes ls-freq {
-          from { transform: scaleY(0.18); opacity: 0.35; }
-          to   { transform: scaleY(1);    opacity: 1;    }
-        }
-        @keyframes ls-breathe {
-          0%, 100% { opacity: 0.35; transform: scale(1);    }
-          50%       { opacity: 0.65; transform: scale(1.06); }
-        }
-        @keyframes ls-orb-glow {
-          0%, 100% { box-shadow: 0 0 5px 2px rgba(97,139,255,0.5); }
-          50%       { box-shadow: 0 0 12px 4px rgba(97,139,255,0.85); }
-        }
-      `}</style>
-
       {/* Double-Bezel outer shell */}
       <div
         className="relative p-[3px] rounded-[1.75rem]"
@@ -123,11 +108,11 @@ export function LoadingState({ status, progress }: Props) {
                   className="block w-[5px] h-[5px] rounded-full bg-accent shrink-0"
                   style={{ animation: "ls-orb-glow 1.8s ease-in-out infinite" }}
                 />
-                <span className="font-(family-name:--font-space-mono) text-[9px] tracking-[0.22em] text-accent-light/55 uppercase select-none">
+                <span className="font-mono text-[9px] tracking-[0.22em] text-accent-light/55 uppercase select-none">
                   Analysis Pipeline
                 </span>
               </div>
-              <span className="font-(family-name:--font-space-mono) text-[11px] tabular-nums text-accent-light/50">
+              <span className="font-mono text-[11px] tabular-nums text-accent-light/50">
                 {pctStr}
                 <span className="text-text-secondary/20">%</span>
               </span>
@@ -177,7 +162,7 @@ export function LoadingState({ status, progress }: Props) {
                           </svg>
                         ) : (
                           <span
-                            className="font-(family-name:--font-space-mono) text-[10px] font-bold tabular-nums leading-none select-none"
+                            className="font-mono text-[10px] font-bold tabular-nums leading-none select-none"
                             style={{
                               color: isCurrent ? "#b4c5ff" : "rgba(226,226,235,0.18)",
                               transition: "color 600ms cubic-bezier(0.32,0.72,0,1)",
@@ -231,7 +216,7 @@ export function LoadingState({ status, progress }: Props) {
                       style={{ flex: 1, minWidth: 0 }}
                     >
                       <span
-                        className="font-(family-name:--font-space-grotesk) text-[13px] font-semibold"
+                        className="font-heading text-[13px] font-semibold"
                         style={{
                           color: isDone
                             ? "rgba(195,198,215,0.28)"
@@ -248,7 +233,7 @@ export function LoadingState({ status, progress }: Props) {
 
                       <div className="flex items-center gap-1.5">
                         <p
-                          className="font-(family-name:--font-space-mono) text-[9px] tracking-[0.08em]"
+                          className="font-mono text-[9px] tracking-[0.08em]"
                           style={{
                             color: isDone
                               ? "rgba(195,198,215,0.16)"
