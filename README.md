@@ -62,11 +62,11 @@ src/
 
 ## Environment Variables
 
-| 변수          | 설명                            | 기본값              |
-| ------------- | ------------------------------- | ------------------- |
-| `RAILWAY_URL` | 백엔드 API 서버 URL (서버 전용) | 미설정 시 Mock 사용 |
+| 변수      | 설명                            | 기본값              |
+| --------- | ------------------------------- | ------------------- |
+| `API_URL` | 백엔드 API 서버 URL (서버 전용) | 미설정 시 Mock 사용 |
 
-> `RAILWAY_URL`이 없으면 `/api/extract` Route Handler가 Mock 데이터를 반환합니다.
+> `API_URL`이 없으면 `/api/extract` Route Handler가 Mock 데이터를 반환합니다.
 > `NEXT_PUBLIC_` 접두사 없이 서버 사이드에서만 참조되므로 클라이언트에 노출되지 않습니다.
 
 ---

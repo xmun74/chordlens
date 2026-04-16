@@ -357,7 +357,7 @@ export type ExtractStatus = "idle" | "extracting" | "recognizing" | "done" | "er
 ```bash
 # .env
 
-NEXT_PUBLIC_RAILWAY_URL=https://chordlens-server.railway.app
+NEXT_PUBLIC_API_URL=https://chordlens-server.railway.app
 NEXT_PUBLIC_SUPABASE_URL=https://xxxx.supabase.co
 NEXT_PUBLIC_SUPABASE_ANON_KEY=your-anon-key
 ```

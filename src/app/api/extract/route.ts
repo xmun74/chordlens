@@ -3,10 +3,10 @@ import { NextRequest, NextResponse } from "next/server";
 export async function POST(req: NextRequest) {
   const { url } = await req.json().catch(() => ({ url: "" }));
 
-  const apiUrl = process.env.NEXT_PUBLIC_RAILWAY_URL;
+  const apiUrl = process.env.NEXT_PUBLIC_API_URL;
   if (!apiUrl?.startsWith("http")) {
     return NextResponse.json(
-      { detail: "API URL이 설정되지 않았습니다. .env의 NEXT_PUBLIC_RAILWAY_URL을 확인하세요." },
+      { detail: "API URL이 설정되지 않았습니다. .env의 NEXT_PUBLIC_API_URL을 확인하세요." },
       { status: 503 },
     );
   }
