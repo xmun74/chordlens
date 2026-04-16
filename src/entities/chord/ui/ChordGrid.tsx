@@ -20,7 +20,7 @@ export function ChordGrid({ allChords, activeChordIdx }: Props) {
         <div className="flex flex-col items-center gap-2 opacity-80 transition-opacity duration-300">
           {prev ? (
             <>
-              <span className="font-mono text-xs text-text-secondary/60 tabular-nums">
+              <span className="font-mono text-sm text-text-secondary/60 tabular-nums">
                 {prev.time}
               </span>
               <ChordDiagram chordName={prev.chord} size="sm" />
@@ -34,7 +34,7 @@ export function ChordGrid({ allChords, activeChordIdx }: Props) {
         <div className="flex flex-col items-center gap-2 transition-all duration-300 scale-110">
           {current ? (
             <>
-              <span className="font-[(--font-space-mono)] text-xs text-accent-light/70 tabular-nums">
+              <span className="font-mono text-sm font-bold text-accent-light/70 tabular-nums">
                 {current.time}
               </span>
               <ChordDiagram chordName={current.chord} isActive size="lg" />
@@ -48,7 +48,7 @@ export function ChordGrid({ allChords, activeChordIdx }: Props) {
         <div className="flex flex-col items-center gap-2 opacity-80 transition-opacity duration-300">
           {next ? (
             <>
-              <span className="font-mono text-xs text-text-secondary/60 tabular-nums">
+              <span className="font-mono text-sm text-text-secondary/60 tabular-nums">
                 {next.time}
               </span>
               <ChordDiagram chordName={next.chord} size="sm" />

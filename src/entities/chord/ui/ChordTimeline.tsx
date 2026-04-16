@@ -65,9 +65,9 @@ export function ChordTimeline({ chords, activeChord, onSelect }: Props) {
       {/* Timeline scroll container */}
       <div className="relative rounded-2xl bg-bg-dark overflow-hidden">
         {/* Left fade */}
-        <div className="pointer-events-none absolute left-0 top-0 bottom-0 w-8 bg-gradient-to-r from-bg-dark to-transparent z-10" />
+        <div className="pointer-events-none absolute left-0 top-0 bottom-0 w-8 bg-linear-to-r from-bg-dark to-transparent z-10" />
         {/* Right fade */}
-        <div className="pointer-events-none absolute right-0 top-0 bottom-0 w-8 bg-gradient-to-l from-bg-dark to-transparent z-10" />
+        <div className="pointer-events-none absolute right-0 top-0 bottom-0 w-8 bg-linear-to-l from-bg-dark to-transparent z-10" />
 
         <div
           ref={scrollRef}
@@ -80,7 +80,7 @@ export function ChordTimeline({ chords, activeChord, onSelect }: Props) {
               <button
                 key={`${entry.time}-${idx}`}
                 onClick={() => onSelect?.(entry.chord)}
-                className="flex flex-col items-center gap-1 flex-shrink-0 focus:outline-none focus-visible:ring-2 focus-visible:ring-accent-light rounded-xl"
+                className="flex flex-col items-center gap-1 shrink-0 focus:outline-none focus-visible:ring-2 focus-visible:ring-accent-light rounded-xl"
                 aria-pressed={isActive}
                 aria-label={`${entry.time} ${entry.chord}`}
               >
@@ -89,14 +89,18 @@ export function ChordTimeline({ chords, activeChord, onSelect }: Props) {
 
                 {/* Chord chip */}
                 {isActive ? (
-                  <div className="flex h-16 w-16 items-center justify-center rounded-xl bg-gradient-to-br from-accent-light to-accent shadow-[0_0_16px_rgba(97,139,255,0.4)]">
-                    <span className="font-mono text-2xl font-bold text-accent-deep">
+                  <div className="flex h-16 min-w-[64px] px-2 items-center justify-center rounded-xl bg-linear-to-br from-accent-light to-accent shadow-[0_0_16px_rgba(97,139,255,0.4)]">
+                    <span
+                      className={`font-mono font-bold text-accent-deep ${entry.chord.length > 4 ? "text-sm" : "text-2xl"}`}
+                    >
                       {entry.chord}
                     </span>
                   </div>
                 ) : (
-                  <div className="flex h-16 w-16 items-center justify-center rounded-xl bg-accent-light/20 border border-accent-light/50 hover:bg-accent-light/30 transition-colors">
-                    <span className="font-mono text-xl font-bold text-accent-light">
+                  <div className="flex h-16 min-w-[64px] px-2 items-center justify-center rounded-xl bg-accent-light/20 border border-accent-light/50 hover:bg-accent-light/30 transition-colors">
+                    <span
+                      className={`font-mono font-bold text-accent-light ${entry.chord.length > 4 ? "text-sm" : "text-xl"}`}
+                    >
                       {entry.chord}
                     </span>
                   </div>

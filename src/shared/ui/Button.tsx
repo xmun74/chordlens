@@ -12,6 +12,7 @@ export function Button({
   loading = false,
   className = "",
   disabled,
+  type = "button",
   ...props
 }: ButtonProps) {
   const base =

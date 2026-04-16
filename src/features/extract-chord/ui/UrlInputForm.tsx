@@ -174,6 +174,7 @@ export function UrlInputForm({ onSubmit, isLoading = false }: Props) {
 
       {/* Submit button */}
       <Button
+        type="button"
         variant="gradient"
         className="h-[68px] w-full text-lg gap-3"
         onClick={handleSubmit}

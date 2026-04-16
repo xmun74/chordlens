@@ -206,21 +206,17 @@ export function LyricsChordPlayer({ videoId, lyrics, chords, activeChord, onSele
 
   return (
     <section className="flex flex-col gap-4">
-      <h2 className="font-heading text-xl font-bold text-text-primary">
-        {hasLyrics ? "Lyrics & Chords" : "Chords"}
-      </h2>
-
       <div className="rounded-2xl bg-bg-dark overflow-hidden">
         {/* ── 가사 표시 ── */}
         {hasLyrics && (
           <>
             <div className="px-6 pt-5 pb-4 min-h-[68px] flex items-center gap-3">
-              <span className="text-accent-light/50 text-lg select-none">♪</span>
+              <span className="text-accent-light text-lg select-none">♪</span>
               <p className="font-heading text-base text-text-primary leading-relaxed flex-1">
                 {currentLyric?.text ?? <span className="text-text-secondary/40">—</span>}
               </p>
               {currentLyric && (
-                <span className="font-mono text-xs text-text-secondary/50 shrink-0 tabular-nums">
+                <span className="font-mono text-sm text-text-secondary/90 shrink-0 tabular-nums">
                   {currentLyric.time}
                 </span>
               )}
@@ -281,7 +277,7 @@ export function LyricsChordPlayer({ videoId, lyrics, chords, activeChord, onSele
                   />
                 </div>
                 {/* 시간 */}
-                <span className="font-mono text-[10px] text-text-secondary/50 tabular-nums">
+                <span className="font-mono text-xs text-text-secondary/70 tabular-nums">
                   {formatTime(currentTime)}
                   {duration > 0 ? ` / ${formatTime(duration)}` : ""}
                 </span>
@@ -324,7 +320,7 @@ export function LyricsChordPlayer({ videoId, lyrics, chords, activeChord, onSele
                     style={{ left: `${PLAYHEAD_LEFT + t * PX_PER_SEC}px`, bottom: "6px" }}
                   >
                     <div className="w-px h-2 bg-white/10" />
-                    <span className="font-mono text-[9px] text-text-secondary/30 mt-0.5 tabular-nums">
+                    <span className="font-mono text-sm text-text-secondary/70 mt-0.5 tabular-nums">
                       {`${Math.floor(t / 60)}:${String(t % 60).padStart(2, "0")}`}
                     </span>
                   </div>
