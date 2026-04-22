@@ -1,7 +1,8 @@
 ---
 name: 🐛 Bug
 about: 버그 수정
-labels: bug
+title: "[bug] : "
+labels: BUG
 ---
 
 ## 현상

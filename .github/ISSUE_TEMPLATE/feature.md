@@ -1,7 +1,8 @@
 ---
 name: ✨ Feature
 about: 신규 기능 추가
-labels: feat
+title: "[feat] : "
+labels: FEAT
 ---
 
 ## 목표
@@ -13,11 +14,4 @@ labels: feat
 - [ ]
 - [ ]
 
-## 완료 조건
-
-- [ ]
-- [ ]
-
-## 예상 소요시간
-
-<!-- 1h / 2h / 반나절 / 하루 -->
+## 기타
