@@ -23,7 +23,7 @@ declare module "vexchords" {
   }
 
   export interface ChordConfig {
-    chord: [number, number][];
+    chord: [number, number, number?][];
     position?: number;
     barres?: BarreConfig[];
     tuning?: string[];
