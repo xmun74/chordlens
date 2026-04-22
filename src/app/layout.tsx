@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Inter, Space_Grotesk, Space_Mono, Noto_Sans_KR } from "next/font/google";
+import { GoogleAnalytics } from "@next/third-parties/google";
 import "./globals.css";
 import { Header } from "@/shared/ui/Header";
 import { Footer } from "@/shared/ui/Footer";
@@ -67,6 +68,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           </div>
         </Providers>
       </body>
+      {process.env.NODE_ENV === "production" && process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID && (
+        <GoogleAnalytics gaId={process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID} />
+      )}
     </html>
   );
 }
