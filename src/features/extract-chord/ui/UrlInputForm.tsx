@@ -64,19 +64,11 @@ export function UrlInputForm({ onSubmit, isLoading = false }: Props) {
         ].join(" ")}
       >
         {/* Link icon */}
-        <svg
-          className="mr-3 shrink-0 text-text-secondary/40"
-          width="18"
-          height="18"
-          viewBox="0 0 18 18"
-          fill="none"
-          stroke="currentColor"
-          strokeWidth="1.5"
-          strokeLinecap="round"
-          aria-hidden="true"
-        >
-          <path d="M7.5 10.5a4.5 4.5 0 0 0 6.364 0l2.122-2.121a4.5 4.5 0 0 0-6.364-6.364L8.136 3.5" />
-          <path d="M10.5 7.5a4.5 4.5 0 0 0-6.364 0L2.014 9.621a4.5 4.5 0 0 0 6.364 6.364l1.477-1.477" />
+        <svg className="mr-3 shrink-0" width="20" height="10" viewBox="0 0 20 10" fill="none">
+          <path
+            d="M9 10H5C3.61667 10 2.4375 9.5125 1.4625 8.5375C0.4875 7.5625 0 6.38333 0 5C0 3.61667 0.4875 2.4375 1.4625 1.4625C2.4375 0.4875 3.61667 0 5 0H9V2H5C4.16667 2 3.45833 2.29167 2.875 2.875C2.29167 3.45833 2 4.16667 2 5C2 5.83333 2.29167 6.54167 2.875 7.125C3.45833 7.70833 4.16667 8 5 8H9V10ZM6 6V4H14V6H6ZM11 10V8H15C15.8333 8 16.5417 7.70833 17.125 7.125C17.7083 6.54167 18 5.83333 18 5C18 4.16667 17.7083 3.45833 17.125 2.875C16.5417 2.29167 15.8333 2 15 2H11V0H15C16.3833 0 17.5625 0.4875 18.5375 1.4625C19.5125 2.4375 20 3.61667 20 5C20 6.38333 19.5125 7.5625 18.5375 8.5375C17.5625 9.5125 16.3833 10 15 10H11Z"
+            fill="#B4C5FF"
+          />
         </svg>
 
         <input
@@ -183,13 +175,7 @@ export function UrlInputForm({ onSubmit, isLoading = false }: Props) {
         aria-label="코드 분석하기"
       >
         {!isLoading && (
-          <svg
-            width="22"
-            height="22"
-            viewBox="0 0 22 22"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-          >
+          <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
             <path
               d="M18 8L16.75 5.25L14 4L16.75 2.75L18 0L19.25 2.75L22 4L19.25 5.25L18 8ZM18 22L16.75 19.25L14 18L16.75 16.75L18 14L19.25 16.75L22 18L19.25 19.25L18 22ZM8 19L5.5 13.5L0 11L5.5 8.5L8 3L10.5 8.5L16 11L10.5 13.5L8 19ZM8 14.15L9 12L11.15 11L9 10L8 7.85L7 10L4.85 11L7 12L8 14.15Z"
               fill="#002A78"
