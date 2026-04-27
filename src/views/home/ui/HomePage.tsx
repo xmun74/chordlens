@@ -36,42 +36,7 @@ export function HomePage() {
           </div>
 
           {/* Right: Hero image card */}
-          <div className="hidden lg:block relative w-[480px] shrink-0">
-            <div className="relative rounded-2xl border border-border/10 bg-bg-card/40 overflow-hidden aspect-square backdrop-blur-sm">
-              <div className="absolute inset-0 bg-linear-to-br from-transparent to-bg-base/80 z-10" />
-              <div className="absolute bottom-6 left-6 z-20 flex items-center gap-3">
-                <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-linear-to-br from-accent-light to-accent">
-                  <svg width="20" height="22" viewBox="0 0 20 22" fill="#002a78">
-                    <path d="M10 2a6 6 0 0 0-6 6v3l-2 3h16l-2-3V8a6 6 0 0 0-6-6zm0 18a2 2 0 0 1-2-2h4a2 2 0 0 1-2 2z" />
-                  </svg>
-                </div>
-                <div>
-                  <p className="font-mono text-sm text-accent-light">STATUS: READY</p>
-                  <p className="font-mono text-lg font-bold text-text-primary">
-                    Obsidian Engine v2.4
-                  </p>
-                </div>
-              </div>
-              <div className="absolute inset-0 opacity-20">
-                <svg width="100%" height="100%" viewBox="0 0 480 480" fill="none">
-                  {Array.from({ length: 8 }).map((_, i) =>
-                    Array.from({ length: 8 }).map((_, j) => (
-                      <rect
-                        key={`${i}-${j}`}
-                        x={i * 60 + 10}
-                        y={j * 60 + 10}
-                        width="40"
-                        height="40"
-                        rx="4"
-                        fill="#434654"
-                        opacity={0.3}
-                      />
-                    )),
-                  )}
-                </svg>
-              </div>
-            </div>
-          </div>
+          <div className=""></div>
         </div>
       </section>
 
