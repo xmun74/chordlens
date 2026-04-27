@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useRef, DragEvent, ChangeEvent } from "react";
+import { useTranslations } from "next-intl";
 import { isValidYouTubeUrl } from "@/shared/lib/youtube";
 import { Button } from "@/shared/ui/Button";
 
@@ -10,6 +11,7 @@ interface Props {
 }
 
 export function UrlInputForm({ onSubmit, isLoading = false }: Props) {
+  const t = useTranslations();
   const [url, setUrl] = useState("");
   const [error, setError] = useState("");
   const [isDragging, setIsDragging] = useState(false);
@@ -21,7 +23,7 @@ export function UrlInputForm({ onSubmit, isLoading = false }: Props) {
     const val = e.target.value;
     setUrl(val);
     if (val && !isValidYouTubeUrl(val)) {
-      setError("유효한 YouTube URL을 입력해주세요.");
+      setError(t("유효한 YouTube URL을 입력해주세요"));
     } else {
       setError("");
     }
@@ -46,10 +48,8 @@ export function UrlInputForm({ onSubmit, isLoading = false }: Props) {
   const handleDrop = (e: DragEvent<HTMLDivElement>) => {
     e.preventDefault();
     setIsDragging(false);
-    // File drop — future: handle MP3/WAV
     const file = e.dataTransfer.files[0];
     if (file) {
-      // Placeholder for file handling
       console.log("File dropped:", file.name);
     }
   };
@@ -63,7 +63,6 @@ export function UrlInputForm({ onSubmit, isLoading = false }: Props) {
           error ? "ring-1 ring-red-500/50" : "focus-within:ring-1 focus-within:ring-accent/60",
         ].join(" ")}
       >
-        {/* Link icon */}
         <svg className="mr-3 shrink-0" width="20" height="10" viewBox="0 0 20 10" fill="none">
           <path
             d="M9 10H5C3.61667 10 2.4375 9.5125 1.4625 8.5375C0.4875 7.5625 0 6.38333 0 5C0 3.61667 0.4875 2.4375 1.4625 1.4625C2.4375 0.4875 3.61667 0 5 0H9V2H5C4.16667 2 3.45833 2.29167 2.875 2.875C2.29167 3.45833 2 4.16667 2 5C2 5.83333 2.29167 6.54167 2.875 7.125C3.45833 7.70833 4.16667 8 5 8H9V10ZM6 6V4H14V6H6ZM11 10V8H15C15.8333 8 16.5417 7.70833 17.125 7.125C17.7083 6.54167 18 5.83333 18 5C18 4.16667 17.7083 3.45833 17.125 2.875C16.5417 2.29167 15.8333 2 15 2H11V0H15C16.3833 0 17.5625 0.4875 18.5375 1.4625C19.5125 2.4375 20 3.61667 20 5C20 6.38333 19.5125 7.5625 18.5375 8.5375C17.5625 9.5125 16.3833 10 15 10H11Z"
@@ -76,9 +75,9 @@ export function UrlInputForm({ onSubmit, isLoading = false }: Props) {
           value={url}
           onChange={handleChange}
           onKeyDown={handleKeyDown}
-          placeholder="Paste YouTube link here..."
+          placeholder={t("YouTube 링크를 붙여넣으세요")}
           className="flex-1 bg-transparent text-base text-text-primary placeholder-text-secondary/40 outline-none"
-          aria-label="YouTube URL 입력"
+          aria-label={t("YouTube URL 입력")}
           aria-invalid={!!error}
           aria-describedby={error ? "url-error" : undefined}
           disabled={isLoading}
@@ -92,7 +91,7 @@ export function UrlInputForm({ onSubmit, isLoading = false }: Props) {
               setError("");
             }}
             className="ml-2 text-text-secondary/40 hover:text-text-secondary transition-colors"
-            aria-label="입력 초기화"
+            aria-label={t("입력 초기화")}
           >
             <svg
               width="16"
@@ -109,7 +108,6 @@ export function UrlInputForm({ onSubmit, isLoading = false }: Props) {
         )}
       </div>
 
-      {/* Error */}
       {error && (
         <p id="url-error" className="text-sm text-red-400 -mt-2">
           {error}
@@ -119,7 +117,7 @@ export function UrlInputForm({ onSubmit, isLoading = false }: Props) {
       {/* Drag & Drop area */}
       <div
         role="region"
-        aria-label="오디오 파일 드래그 앤 드롭 영역"
+        aria-label={t("MP3 또는 WAV 파일을 여기에 드래그 앤 드롭하세요")}
         onDragOver={handleDragOver}
         onDragLeave={handleDragLeave}
         onDrop={handleDrop}
@@ -131,7 +129,6 @@ export function UrlInputForm({ onSubmit, isLoading = false }: Props) {
             : "border-border bg-bg-card/30 hover:border-border/70",
         ].join(" ")}
       >
-        {/* Music note icon */}
         <svg
           className="text-text-secondary/60"
           width="32"
@@ -149,7 +146,7 @@ export function UrlInputForm({ onSubmit, isLoading = false }: Props) {
           <circle cx="23" cy="24" r="3" />
         </svg>
         <span className="font-heading text-base text-text-secondary">
-          Drag and drop MP3 or WAV files here
+          {t("MP3 또는 WAV 파일을 여기에 드래그 앤 드롭하세요")}
         </span>
       </div>
 
@@ -158,13 +155,9 @@ export function UrlInputForm({ onSubmit, isLoading = false }: Props) {
         type="file"
         accept=".mp3,.wav,audio/*"
         className="hidden"
-        onChange={(e) => {
-          const file = e.target.files?.[0];
-          if (file) console.log("File selected:", file.name);
-        }}
+        onChange={() => {}}
       />
 
-      {/* Submit button */}
       <Button
         type="button"
         variant="gradient"
@@ -172,7 +165,7 @@ export function UrlInputForm({ onSubmit, isLoading = false }: Props) {
         onClick={handleSubmit}
         disabled={!isValid}
         loading={isLoading}
-        aria-label="코드 분석하기"
+        aria-label={t("코드 분석하기")}
       >
         {!isLoading && (
           <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
@@ -182,7 +175,7 @@ export function UrlInputForm({ onSubmit, isLoading = false }: Props) {
             />
           </svg>
         )}
-        Analyze Chords
+        {t("코드 분석하기")}
       </Button>
     </div>
   );
