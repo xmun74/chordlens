@@ -7,7 +7,7 @@ import type { ChordResult } from "@/shared/model";
 import { notFound } from "next/navigation";
 
 interface Props {
-  params: Promise<{ id: string }>;
+  params: Promise<{ id: string; locale: string }>;
 }
 
 async function getBaseUrl(): Promise<string> {

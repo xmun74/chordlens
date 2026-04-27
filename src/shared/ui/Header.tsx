@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import { LanguageToggle } from "./LanguageToggle";
 
 export function Header() {
   return (
@@ -17,7 +18,9 @@ export function Header() {
         </div>
 
         {/* Right */}
-        <div className="ml-auto flex items-center gap-4"></div>
+        <div className="ml-auto flex items-center gap-4">
+          <LanguageToggle />
+        </div>
       </nav>
     </header>
   );
