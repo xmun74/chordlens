@@ -2,7 +2,7 @@
 
 import { useCallback } from "react";
 import { useExtractChord, UrlInputForm, LoadingState } from "@/features/extract-chord";
-import { ResultList } from "@/features/list-results";
+import { PopularList, ResultList } from "@/features/list-results";
 
 export function HomePage() {
   const mutation = useExtractChord();
@@ -67,7 +67,17 @@ export function HomePage() {
         </section>
       )}
 
+      <section className="mx-auto max-w-7xl px-8 pb-8">
+        <p className="font-mono text-xs tracking-widest text-text-secondary uppercase mb-4">
+          Popular
+        </p>
+        <PopularList />
+      </section>
+
       <section className="mx-auto max-w-7xl px-8 pb-16">
+        <p className="font-mono text-xs tracking-widest text-text-secondary uppercase mb-4">
+          Recent
+        </p>
         <ResultList />
       </section>
     </main>

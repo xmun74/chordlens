@@ -2,6 +2,7 @@ import { cache } from "react";
 import { headers } from "next/headers";
 import { ResultPage } from "@/views/result";
 import { getResultById } from "@/entities/result";
+import { ViewTracker } from "@/features/track-view";
 import type { ChordResult } from "@/shared/model";
 import { notFound } from "next/navigation";
 
@@ -27,7 +28,12 @@ export default async function ResultRoute({ params }: Props) {
 
   if (!result) notFound();
 
-  return <ResultPage result={result} />;
+  return (
+    <>
+      <ViewTracker id={id} title={result.title} />
+      <ResultPage result={result} />
+    </>
+  );
 }
 
 export async function generateMetadata({ params }: Props) {
