@@ -1,6 +1,6 @@
 ---
 name: fe-development
-description: "ChordLens FE 개발 가이드. 컴포넌트 생성, 기능 구현, API 연동, FSD 규칙 적용, TypeScript 타입 안전성 확보 작업 시 반드시 사용. Next.js 16 App Router, FSD v2.1, TanStack Query, Tailwind CSS v4 규칙 포함."
+description: "ChordLens FE 개발 가이드. 컴포넌트 생성, 기능 구현, API 연동, FSD 규칙 적용, TypeScript 타입 안전성 확보 작업 시 반드시 사용. Next.js 16 App Router, FSD v2.1, TanStack Query, Tailwind CSS v4, vexchords 규칙 포함."
 ---
 
 # ChordLens FE Development
@@ -59,14 +59,12 @@ FSD 규칙 검증: `pnpm fsd` (steiger ./src)
 // src/shared/api/railwayClient.ts 공통 유틸 사용
 // fetch 직접 사용 금지
 
-// 요청/응답 타입 반드시 interface로 선언
 interface ExtractRequest {
   url: string;
 }
 
 interface ExtractResponse {
   chords: ChordData[];
-  // ...
 }
 
 // 에러 처리: 400 / 500 / 504 케이스 모두 핸들링
@@ -77,6 +75,52 @@ interface ExtractResponse {
 - **Server Component**: 정적 데이터, SEO 필요 시 (기본값)
 - **TanStack Query useMutation**: 사용자 액션으로 트리거되는 데이터 변경
 - **TanStack Query useQuery**: 대화형 동적 데이터
+
+## 코드 시각화 — vexchords
+
+ChordLens는 기타 코드 다이어그램 렌더링에 vexchords를 사용한다.
+
+```tsx
+import { ChordBox } from "vexchords";
+
+// ChordBox는 Canvas 기반 — 'use client' 필수
+// 마운트 후 렌더링해야 하므로 useEffect 사용 (데이터 페칭 아님, 렌더링 사이드 이펙트)
+export function ChordDiagram({ chord }: { chord: ChordData }) {
+  const ref = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (!ref.current) return;
+    const box = new ChordBox(ref.current, {
+      width: 100,
+      height: 120,
+      defaultColor: "#333",
+    });
+    box.draw({
+      chord: chord.frets, // [[string, fret], ...] — 0은 open, -1은 mute
+      fingers: chord.fingers, // [[string, fret], ...]
+      barres: chord.barres, // [{ fromString, toString, fret }]
+    });
+  }, [chord]);
+
+  return <div ref={ref} />;
+}
+```
+
+**vexchords 데이터 형식:**
+
+```typescript
+interface ChordData {
+  name: string;
+  frets: [number, number][]; // [string(1-6), fret(0=open, -1=mute)]
+  fingers: [number, number][]; // [string, finger(1-4)]
+  barres?: { fromString: number; toString: number; fret: number }[];
+}
+```
+
+**주의:**
+
+- `ChordBox` 인스턴스는 컴포넌트 언마운트 시 정리 불필요 (Canvas DOM 제거로 충분)
+- 동일 div에 재렌더링 시 기존 Canvas 내용이 덮어쓰여짐 — `key` prop으로 강제 재마운트
 
 ## 현재 엔티티
 

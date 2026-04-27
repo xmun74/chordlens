@@ -1,6 +1,6 @@
 ---
 name: chordlens-plan
-description: "ChordLens 작업 계획 단계. 구현 전 FSD 레이어 설계, 파일 목록, 타입 인터페이스 정의. planner + plan-critic 팀으로 계획 수립 후 독립 비평까지 완료한다. 독립 실행 가능: /chordlens-plan으로 직접 호출하거나 chordlens-orchestrator가 Phase 2로 호출."
+description: "ChordLens 작업 계획 단계. 구현 전 FSD 레이어 설계, 파일 목록, 타입 인터페이스 정의. planner + plan-critic 팀으로 계획 수립 후 독립 비평까지 완료한다. 독립 실행 가능: chordlens-orchestrator가 Phase 2로 호출하거나 계획만 단독으로 요청 시 직접 사용."
 ---
 
 # ChordLens Plan
@@ -40,8 +40,11 @@ TeamCreate(
 
 ```
 TaskCreate(tasks: [
-  { title: "계획 수립", assignee: "planner", description: "기존 코드 탐색 후 _workspace/02_plan.md 작성" },
-  { title: "계획 비평", assignee: "plan-critic", description: "_workspace/02_plan.md 읽고 _workspace/02_plan_critique.md 작성", depends_on: ["계획 수립"] }
+  { title: "계획 수립", assignee: "planner",
+    description: "기존 코드 탐색 후 _workspace/02_plan.md 작성" },
+  { title: "계획 비평", assignee: "plan-critic",
+    description: "_workspace/02_plan.md 읽고 _workspace/02_plan_critique.md 작성",
+    depends_on: ["계획 수립"] }
 ])
 ```
 

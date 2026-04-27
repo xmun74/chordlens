@@ -31,6 +31,8 @@ pnpm-debug.log*
 .claude/worktrees
 .claude/launch.json
 .claude/settings.local.json
+_workspace/
+_workspace_prev_*/
 
 # debug
 npm-debug.log*

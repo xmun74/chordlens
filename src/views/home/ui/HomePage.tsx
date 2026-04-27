@@ -1,34 +1,18 @@
 "use client";
 
-import { useState, useCallback } from "react";
+import { useCallback } from "react";
 import { useExtractChord, UrlInputForm, LoadingState } from "@/features/extract-chord";
-import { ShareButton } from "@/features/share-result";
-import { ChordGrid, LyricsChordPlayer } from "@/entities/chord";
-import { VideoCard } from "@/entities/video";
+import { ResultList } from "@/features/list-results";
 
 export function HomePage() {
-  const [activeChord, setActiveChord] = useState<string | null>(null);
-  const [activeChordIdx, setActiveChordIdx] = useState(0);
   const mutation = useExtractChord();
-
-  const handleSelect = useCallback((chord: string, idx: number) => {
-    setActiveChord(chord);
-    setActiveChordIdx(idx);
-  }, []);
 
   const handleSubmit = useCallback(
     (url: string) => {
-      setActiveChord(null);
-      setActiveChordIdx(0);
       mutation.mutate(url);
     },
     [mutation],
   );
-
-  const handleShare = useCallback(() => {
-    const id = mutation.data?.id;
-    if (id) navigator.clipboard?.writeText(`${window.location.origin}/result/${id}`);
-  }, [mutation.data?.id]);
 
   return (
     <main className="min-h-screen">
@@ -54,10 +38,7 @@ export function HomePage() {
           {/* Right: Hero image card */}
           <div className="hidden lg:block relative w-[480px] shrink-0">
             <div className="relative rounded-2xl border border-border/10 bg-bg-card/40 overflow-hidden aspect-square backdrop-blur-sm">
-              {/* Gradient overlay */}
               <div className="absolute inset-0 bg-linear-to-br from-transparent to-bg-base/80 z-10" />
-
-              {/* Status badge */}
               <div className="absolute bottom-6 left-6 z-20 flex items-center gap-3">
                 <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-linear-to-br from-accent-light to-accent">
                   <svg width="20" height="22" viewBox="0 0 20 22" fill="#002a78">
@@ -71,8 +52,6 @@ export function HomePage() {
                   </p>
                 </div>
               </div>
-
-              {/* Background pattern */}
               <div className="absolute inset-0 opacity-20">
                 <svg width="100%" height="100%" viewBox="0 0 480 480" fill="none">
                   {Array.from({ length: 8 }).map((_, i) =>
@@ -96,7 +75,7 @@ export function HomePage() {
         </div>
       </section>
 
-      {/* ─── Loading State (캐시 히트 시 pipelineStatus가 idle이므로 렌더링 안 됨) ─── */}
+      {/* ─── Loading State ─── */}
       {mutation.isPending && mutation.pipelineStatus !== "idle" && (
         <section className="mx-auto max-w-7xl px-8 pb-8">
           <LoadingState status={mutation.pipelineStatus} progress={mutation.progress} />
@@ -123,45 +102,9 @@ export function HomePage() {
         </section>
       )}
 
-      {/* ─── Result Section ─── */}
-      {mutation.isSuccess && mutation.data && (
-        <section className="mx-auto max-w-7xl px-8 pb-16 flex flex-col gap-8">
-          {/* Video metadata */}
-          <VideoCard
-            meta={{
-              title: mutation.data.title,
-              thumbnailUrl: mutation.data.thumbnailUrl,
-              channelName: mutation.data.channelName,
-              tempo: mutation.data.tempo,
-              key: mutation.data.key,
-            }}
-            onShare={handleShare}
-          />
-
-          {/* Lyrics + Chord 스크롤 플레이어 */}
-          <LyricsChordPlayer
-            videoId={mutation.data.videoId}
-            lyrics={mutation.data.lyrics ?? undefined}
-            chords={mutation.data.chords}
-            activeChord={activeChord}
-            onSelect={handleSelect}
-          />
-
-          {/* Chord grid */}
-          <ChordGrid allChords={mutation.data.chords} activeChordIdx={activeChordIdx} />
-
-          {/* Share CTA */}
-          <div className="flex justify-center pt-4">
-            <ShareButton
-              url={
-                mutation.data.id
-                  ? `${window.location.origin}/result/${mutation.data.id}`
-                  : undefined
-              }
-            />
-          </div>
-        </section>
-      )}
+      <section className="mx-auto max-w-7xl px-8 pb-16">
+        <ResultList />
+      </section>
     </main>
   );
 }

@@ -47,5 +47,5 @@ ChordLens 백엔드 개발 전문가. FastAPI 클린 아키텍처를 준수하�
 ## 팀 통신 프로토콜
 
 - **수신:** 리더로부터 작업 지시
-- **발신:** 완료 시 fe-developer에게 API 스펙 SendMessage, qa-reviewer에게 검토 요청
+- **발신:** 완료 시 fe-developer에게 API 스펙 SendMessage, 리더에게 완료 보고
 - **에러 시:** 리더에게 SendMessage로 상황 보고
