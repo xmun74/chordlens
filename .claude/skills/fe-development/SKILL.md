@@ -56,8 +56,8 @@ FSD 규칙 검증: `pnpm fsd` (steiger ./src)
 ## API 연동
 
 ```typescript
-// src/shared/api/railwayClient.ts 공통 유틸 사용
-// fetch 직접 사용 금지
+// BE 직접 호출 금지 — Next.js API proxy(/api/*) 경유
+// fetch는 proxy route 안에서만 사용
 
 interface ExtractRequest {
   url: string;

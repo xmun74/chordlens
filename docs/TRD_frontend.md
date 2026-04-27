@@ -70,7 +70,7 @@ chordlens-frontend/
     ├── features/                          # 레이어 3: 사용자 행동 단위
     │   ├── extract-chord/                 # 핵심 기능: URL → 코드 추출
     │   │   ├── api/
-    │   │   │   └── extractChord.ts        # Railway POST /extract 호출
+    │   │   │   └── extractChord.ts        # POST /api/extract 호출
     │   │   ├── model/
     │   │   │   └── useExtractChord.ts     # TanStack Query useMutation 훅
     │   │   └── ui/
@@ -96,7 +96,6 @@ chordlens-frontend/
     │
     └── shared/                            # 레이어 1: 공통 기반 (최하위)
         ├── api/
-        │   └── railwayClient.ts           # Railway API 기본 fetch 클라이언트
         ├── lib/
         │   ├── chord.ts                   # 코드명 정규화 유틸
         │   └── youtube.ts                 # YouTube URL 유효성 검사 유틸
@@ -174,7 +173,7 @@ export async function generateMetadata({ params }): Promise<Metadata> {
 
 ### 3-3. API Route (`/api/meta`)
 
-**목적:** Railway 서버 호출 전 YouTube 메타데이터 선조회 (썸네일, 제목 즉시 표시용)
+**목적:** YouTube 메타데이터 선조회 (썸네일, 제목 즉시 표시용)
 
 **요구사항:**
 
@@ -226,7 +225,7 @@ const YOUTUBE_REGEX = /^(https?:\/\/)?(www\.)?(youtube\.com\/watch\?v=|youtu\.be
 | 3    | 완료!             |
 
 - 각 단계는 TanStack Query의 `fetchStatus`와 서버 응답 기반으로 전환
-- 폴링 없이 단일 요청으로 처리 (Railway 응답까지 대기)
+- 폴링 없이 단일 요청으로 처리 (BE 응답까지 대기)
 
 ---
 
@@ -357,7 +356,7 @@ export type ExtractStatus = "idle" | "extracting" | "recognizing" | "done" | "er
 ```bash
 # .env
 
-NEXT_PUBLIC_API_URL=https://chordlens-server.railway.app
+NEXT_PUBLIC_API_URL=http://localhost:8000
 NEXT_PUBLIC_SUPABASE_URL=https://xxxx.supabase.co
 NEXT_PUBLIC_SUPABASE_ANON_KEY=your-anon-key
 ```

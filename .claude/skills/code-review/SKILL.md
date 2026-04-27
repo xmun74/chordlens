@@ -35,7 +35,7 @@ pnpm lint          # ESLint
 
 ### API 연동
 
-- [ ] `fetch` 직접 사용 없음 — `src/shared/api/railwayClient.ts` 경유
+- [ ] BE 직접 호출 없음 — Next.js API proxy(`/api/*`) 경유
 - [ ] 에러 처리: 400 / 500 / 504 케이스 모두 핸들링
 - [ ] BE 응답 shape와 FE 타입 정의 일치
 

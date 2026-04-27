@@ -2,7 +2,7 @@ import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useState, useRef } from "react";
 import { useRouter } from "next/navigation";
 import { extractChords } from "../api/extractChord";
-import { resultsQueryKey } from "@/features/list-results";
+import { resultsQueryKey } from "@/entities/result";
 import type { ChordResult } from "@/shared/model";
 import type { ExtractStatus } from "./types";
 

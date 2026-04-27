@@ -1,10 +1,10 @@
 "use client";
 
 import { useQuery } from "@tanstack/react-query";
-import { getResults } from "@/entities/result";
+import { getResults, resultsQueryKey } from "@/entities/result";
 import type { ResultListResponse } from "@/entities/result";
 
-export const resultsQueryKey = ["results"] as const;
+export { resultsQueryKey } from "@/entities/result";
 
 export function useResults() {
   return useQuery<ResultListResponse>({

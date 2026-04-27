@@ -1,6 +1,7 @@
 import { cache } from "react";
+import { headers } from "next/headers";
 import { ResultPage } from "@/views/result";
-import { railwayFetch } from "@/shared/api";
+import { getResultById } from "@/entities/result";
 import type { ChordResult } from "@/shared/model";
 import { notFound } from "next/navigation";
 
@@ -8,12 +9,16 @@ interface Props {
   params: Promise<{ id: string }>;
 }
 
+async function getBaseUrl(): Promise<string> {
+  const headersList = await headers();
+  const host = headersList.get("host") ?? "localhost:3000";
+  const protocol = host.startsWith("localhost") ? "http" : "https";
+  return `${protocol}://${host}`;
+}
+
 const getResult = cache(async (id: string): Promise<ChordResult | null> => {
-  try {
-    return await railwayFetch<ChordResult>(`/result/${id}`);
-  } catch {
-    return null;
-  }
+  const baseUrl = await getBaseUrl();
+  return getResultById(id, baseUrl);
 });
 
 export default async function ResultRoute({ params }: Props) {
