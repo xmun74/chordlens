@@ -33,6 +33,7 @@ pnpm-debug.log*
 .claude/settings.local.json
 _workspace/
 _workspace_prev_*/
+.playwright-mcp/
 
 # debug
 npm-debug.log*
