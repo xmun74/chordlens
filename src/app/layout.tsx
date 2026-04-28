@@ -35,7 +35,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
   return (
     <html
       lang={locale}
-      style={{ colorScheme: "dark" }}
+      suppressHydrationWarning
       className={[
         inter.variable,
         spaceGrotesk.variable,
