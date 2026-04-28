@@ -20,8 +20,8 @@ export function Header() {
 
         {/* Right */}
         <div className="ml-auto flex items-center gap-4">
-          <ThemeToggle />
           <LanguageToggle />
+          <ThemeToggle />
         </div>
       </nav>
     </header>
