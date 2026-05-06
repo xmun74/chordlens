@@ -23,7 +23,12 @@ export function ChordGrid({ allChords, activeChordIdx }: Props) {
               <span className="font-mono text-sm text-text-secondary/60 tabular-nums">
                 {prev.time}
               </span>
-              <ChordDiagram chordName={prev.chord} size="sm" />
+              <ChordDiagram
+                chordName={prev.chord}
+                size="sm"
+                fret={prev.fret}
+                voicing={prev.voicing}
+              />
             </>
           ) : (
             <div className="w-[202px] h-[160px]" />
@@ -37,7 +42,13 @@ export function ChordGrid({ allChords, activeChordIdx }: Props) {
               <span className="font-mono text-sm font-bold text-accent-light/70 tabular-nums">
                 {current.time}
               </span>
-              <ChordDiagram chordName={current.chord} isActive size="lg" />
+              <ChordDiagram
+                chordName={current.chord}
+                isActive
+                size="lg"
+                fret={current.fret}
+                voicing={current.voicing}
+              />
             </>
           ) : (
             <div className="w-[190px] h-[240px]" />
@@ -51,7 +62,12 @@ export function ChordGrid({ allChords, activeChordIdx }: Props) {
               <span className="font-mono text-sm text-text-secondary/60 tabular-nums">
                 {next.time}
               </span>
-              <ChordDiagram chordName={next.chord} size="sm" />
+              <ChordDiagram
+                chordName={next.chord}
+                size="sm"
+                fret={next.fret}
+                voicing={next.voicing}
+              />
             </>
           ) : (
             <div className="w-[202px] h-[160px]" />

@@ -6,6 +6,8 @@ interface Props {
   chordName: string;
   isActive?: boolean;
   size?: "sm" | "md" | "lg";
+  fret?: number;
+  voicing?: "open" | "barre";
 }
 
 const SIZES = {
@@ -14,7 +16,7 @@ const SIZES = {
   lg: { w: 190, h: 214 },
 };
 
-type ChordEntry = {
+type ChordShape = {
   // [string, fret, finger?]  string 1=high e, 6=low E  /  finger 1=index … 4=pinky
   fingers: [number, number, number?][];
   barres?: { fret: number; fromString: number; toString: number }[];
@@ -22,7 +24,7 @@ type ChordEntry = {
 };
 
 // Finger positions for common chords
-const CHORD_DATA: Record<string, ChordEntry> = {
+const CHORD_DATA: Record<string, ChordShape> = {
   // ── Open chords ──
   Am: {
     fingers: [
@@ -405,7 +407,7 @@ const CHORD_DATA: Record<string, ChordEntry> = {
  * 2. 슬래시 코드 → 루트만 사용 (F/G → F)
  * 3. 확장 코드 → 루트+장단조만 사용 (Cm7b5 → Cm, Cmaj7 → C)
  */
-function resolveChordData(name: string): ChordEntry | null {
+function resolveChordData(name: string): ChordShape | null {
   if (CHORD_DATA[name]) return CHORD_DATA[name];
 
   // 슬래시 코드 처리
@@ -423,7 +425,15 @@ function resolveChordData(name: string): ChordEntry | null {
   return null;
 }
 
-export function ChordDiagram({ chordName, isActive = false, size = "md" }: Props) {
+function buildBarreFallback(fret: number): ChordShape {
+  return {
+    fingers: [],
+    barres: [{ fret: 1, fromString: 1, toString: 6 }],
+    position: fret,
+  };
+}
+
+export function ChordDiagram({ chordName, isActive = false, size = "md", fret, voicing }: Props) {
   const ref = useRef<HTMLDivElement>(null);
   const { w, h } = SIZES[size];
 
@@ -436,7 +446,10 @@ export function ChordDiagram({ chordName, isActive = false, size = "md" }: Props
         if (!ref.current) return;
         ref.current.innerHTML = "";
 
-        const data = resolveChordData(chordName);
+        const staticData = resolveChordData(chordName);
+        const data =
+          staticData ??
+          (voicing === "barre" && fret != null && fret >= 1 ? buildBarreFallback(fret) : null);
         const fingers = data?.fingers ?? [];
         const barres = data?.barres ?? [];
         const position = data?.position ?? 1;
@@ -525,7 +538,7 @@ export function ChordDiagram({ chordName, isActive = false, size = "md" }: Props
     };
 
     drawChord();
-  }, [chordName, isActive, w, h]);
+  }, [chordName, isActive, w, h, fret, voicing]);
 
   return (
     <article

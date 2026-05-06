@@ -1,6 +1,8 @@
 export interface ChordEntry {
-  time: string; // "0:12"
-  chord: string; // "Am"
+  time: string;
+  chord: string;
+  fret: number;
+  voicing: "open" | "barre";
 }
 
 export interface LyricLine {
