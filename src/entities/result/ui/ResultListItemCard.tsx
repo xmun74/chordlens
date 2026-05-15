@@ -7,38 +7,35 @@ interface ResultListItemCardProps {
 }
 
 export function ResultListItemCard({ item }: ResultListItemCardProps) {
-  const date = new Date(item.createdAt).toISOString().split("T")[0].replaceAll("-", ".");
-
   return (
     <Link
       href={`/result/${item.id}`}
-      className="flex fe items-center gap-4 rounded-xl border border-border/10 bg-bg-card/40 px-4 py-3 transition-colors hover:bg-bg-card/70"
+      className="flex justify-between items-center gap-4 rounded-xl border border-border/10 bg-bg-card/40 px-4 py-3 transition-colors hover:bg-bg-card/70"
     >
       {item.thumbnailUrl ? (
-        <div className="relative h-14 w-24 shrink-0 overflow-hidden rounded-sm">
+        <div className="relative aspect-video basis-1/3 shrink-0 overflow-hidden rounded-xs">
           <Image
             src={item.thumbnailUrl}
-            alt={item.title ?? "thumbnail"}
+            alt={item.title ? item.title : "thumbnail"}
             fill
             className="object-cover"
-            sizes="96px"
+            sizes="33vw"
           />
         </div>
       ) : (
-        <div className="h-14 w-24 shrink-0 rounded-lg bg-bg-base/60" />
+        <div className="aspect-video basis-1/3 shrink-0 rounded-xs bg-bg-base/60" />
       )}
 
-      <div className="flex flex-col">
+      <div className="h-full flex-2 flex flex-col justify-around">
         <div className="flex flex-col min-w-0 flex-1">
-          <p className="text-wraptruncate font-sans text-sm font-semibold text-text-primary">
-            {item.title ?? "제목 없음"}
-          </p>
-          <p className="truncate font-sans text-xs text-text-secondary">
-            {item.channelName ?? "-"}
+          <p className="line-clamp-3 font-sans text-sm font-semibold text-text-primary">
+            {item.title ? item.title : "제목 없음"}
           </p>
         </div>
 
-        <span className="flex justify-end font-mono text-xs text-text-secondary">{date}</span>
+        <span className="flex justify-end font-mono text-xs text-text-secondary">
+          {item.channelName ? item.channelName : "-"}
+        </span>
       </div>
     </Link>
   );
