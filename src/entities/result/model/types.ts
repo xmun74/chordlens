@@ -4,6 +4,7 @@ export interface ResultListItem {
   title: string | null;
   channelName: string | null;
   thumbnailUrl: string | null;
+  duration: number | null;
   createdAt: string;
 }
 
