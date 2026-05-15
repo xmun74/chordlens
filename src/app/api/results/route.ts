@@ -33,6 +33,7 @@ export async function GET(req: NextRequest) {
         title: item.title ?? null,
         channelName: item.channel_name ?? null,
         thumbnailUrl: item.thumbnail_url ?? null,
+        duration: (item.duration as number | null) ?? null,
         createdAt: item.created_at,
       })),
       total: data.total ?? 0,
