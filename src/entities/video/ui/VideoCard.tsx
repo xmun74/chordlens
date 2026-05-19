@@ -8,11 +8,11 @@ interface Props {
 
 export function VideoCard({ meta, onShare }: Props) {
   return (
-    <div className="flex overflow-hidden">
+    <div className="flex min-w-0 overflow-hidden">
       {/* Info */}
-      <div className="flex flex-col justify-between flex-1">
-        <div className="flex items-start justify-between gap-4">
-          <div>
+      <div className="flex min-w-0 flex-1 flex-col justify-between">
+        <div className="flex min-w-0 items-start justify-between gap-4">
+          <div className="min-w-0">
             {/* Badge */}
             <div className="mb-2 inline-flex items-center rounded-full bg-accent-light/10 px-3 py-1">
               <span className="font-heading text-xs font-bold tracking-wide text-accent-light">
@@ -20,12 +20,12 @@ export function VideoCard({ meta, onShare }: Props) {
               </span>
             </div>
             {/* Title */}
-            <h1 className="font-heading text-2xl font-bold leading-tight tracking-tight text-text-primary max-w-lg">
+            <h1 className="max-w-lg font-heading text-xl leading-tight font-bold tracking-tight text-text-primary [overflow-wrap:anywhere] sm:text-2xl">
               {meta.title}
             </h1>
             {/* Channel */}
-            <div className="mt-2 flex items-center gap-2 text-text-secondary">
-              <span className="text-sm">{meta.channelName}</span>
+            <div className="mt-2 flex min-w-0 items-center gap-2 text-text-secondary">
+              <span className="min-w-0 text-sm [overflow-wrap:anywhere]">{meta.channelName}</span>
             </div>
           </div>
 
@@ -57,7 +57,7 @@ export function VideoCard({ meta, onShare }: Props) {
 
         {/* Stats: Tempo + Key */}
         {(meta.tempo || meta.key) && (
-          <div className="mt-4 flex items-center gap-3">
+          <div className="mt-4 flex flex-wrap items-center gap-3">
             {meta.tempo && (
               <div className="flex flex-col rounded-lg bg-bg-input px-4 py-2">
                 <span className="font-sans text-[10px] font-bold uppercase tracking-widest text-text-secondary">

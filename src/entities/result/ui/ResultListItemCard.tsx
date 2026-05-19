@@ -10,7 +10,7 @@ export function ResultListItemCard({ item }: ResultListItemCardProps) {
   return (
     <Link
       href={`/result/${item.id}`}
-      className="flex justify-between items-center gap-4 rounded-xl border border-border/10 bg-bg-card/40 px-4 py-3 transition-colors hover:bg-bg-card/70"
+      className="flex min-w-0 items-center justify-between gap-4 rounded-xl border border-border/10 bg-bg-card/40 px-4 py-3 transition-colors hover:bg-bg-card/70"
     >
       {item.thumbnailUrl ? (
         <div className="relative aspect-video basis-1/3 shrink-0 overflow-hidden rounded-xs">
@@ -26,14 +26,14 @@ export function ResultListItemCard({ item }: ResultListItemCardProps) {
         <div className="aspect-video basis-1/3 shrink-0 rounded-xs bg-bg-base/60" />
       )}
 
-      <div className="h-full flex-2 flex flex-col justify-around">
+      <div className="h-full min-w-0 flex-1 flex flex-col justify-around">
         <div className="flex flex-col min-w-0 flex-1">
           <p className="line-clamp-3 font-sans text-sm font-semibold text-text-primary">
             {item.title ? item.title : "제목 없음"}
           </p>
         </div>
 
-        <span className="flex justify-end font-mono text-xs text-text-secondary">
+        <span className="flex justify-end truncate font-mono text-xs text-text-secondary">
           {item.channelName ? item.channelName : "-"}
         </span>
       </div>

@@ -55,11 +55,11 @@ export function UrlInputForm({ onSubmit, isLoading = false }: Props) {
   };
 
   return (
-    <div className="flex flex-col gap-4">
+    <div className="flex min-w-0 flex-col gap-4">
       {/* URL input */}
       <div
         className={[
-          "flex items-center rounded-xl bg-bg-input px-5 h-[63px] transition-all",
+          "flex h-[58px] min-w-0 items-center rounded-xl bg-bg-input px-4 transition-all sm:h-[63px] sm:px-5",
           error ? "ring-1 ring-red-500/50" : "focus-within:ring-1 focus-within:ring-accent/60",
         ].join(" ")}
       >
@@ -76,7 +76,7 @@ export function UrlInputForm({ onSubmit, isLoading = false }: Props) {
           onChange={handleChange}
           onKeyDown={handleKeyDown}
           placeholder={t("YouTube 링크를 붙여넣으세요")}
-          className="flex-1 bg-transparent text-base text-text-primary placeholder-text-secondary/40 outline-none"
+          className="min-w-0 flex-1 bg-transparent text-base text-text-primary placeholder-text-secondary/40 outline-none"
           aria-label={t("YouTube URL 입력")}
           aria-invalid={!!error}
           aria-describedby={error ? "url-error" : undefined}
@@ -123,7 +123,7 @@ export function UrlInputForm({ onSubmit, isLoading = false }: Props) {
         onDrop={handleDrop}
         onClick={() => fileInputRef.current?.click()}
         className={[
-          "flex flex-col items-center justify-center gap-3 rounded-xl border cursor-pointer transition-all h-[130px]",
+          "flex h-[120px] min-w-0 cursor-pointer flex-col items-center justify-center gap-3 rounded-xl border px-4 text-center transition-all sm:h-[130px]",
           isDragging
             ? "border-accent bg-accent/10"
             : "border-border bg-bg-card/30 hover:border-border/70",
@@ -145,7 +145,7 @@ export function UrlInputForm({ onSubmit, isLoading = false }: Props) {
           <circle cx="9" cy="27" r="3" />
           <circle cx="23" cy="24" r="3" />
         </svg>
-        <span className="font-heading text-base text-text-secondary">
+        <span className="font-heading text-sm text-text-secondary sm:text-base">
           {t("MP3 또는 WAV 파일을 여기에 드래그 앤 드롭하세요")}
         </span>
       </div>
@@ -161,7 +161,7 @@ export function UrlInputForm({ onSubmit, isLoading = false }: Props) {
       <Button
         type="button"
         variant="gradient"
-        className="h-[68px] w-full text-lg gap-3"
+        className="h-14 w-full gap-3 text-base sm:h-[68px] sm:text-lg"
         onClick={handleSubmit}
         disabled={!isValid}
         loading={isLoading}

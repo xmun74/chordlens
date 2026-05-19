@@ -36,7 +36,7 @@ export function PopularList() {
 
   if (isPending) {
     return (
-      <div className="grid grid-flow-col grid-rows-[repeat(2,auto)] auto-cols-[14rem] gap-4 overflow-hidden">
+      <div className="grid grid-flow-col grid-rows-[repeat(2,auto)] auto-cols-[11rem] gap-4 overflow-hidden sm:auto-cols-[14rem]">
         {Array.from({ length: 8 }).map((_, i) => (
           <div key={i} className="flex flex-col gap-2">
             <div className="aspect-square w-full animate-pulse rounded-lg bg-bg-card/40" />
@@ -71,7 +71,7 @@ export function PopularList() {
       <div
         ref={scrollRef}
         onScroll={syncScrollState}
-        className="grid grid-flow-col grid-rows-[repeat(2,auto)] auto-cols-[14rem] gap-4 overflow-x-auto [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden"
+        className="grid grid-flow-col grid-rows-[repeat(2,auto)] auto-cols-[11rem] gap-4 overflow-x-auto [scrollbar-width:none] [-ms-overflow-style:none] sm:auto-cols-[14rem] [&::-webkit-scrollbar]:hidden"
       >
         {data.items.map((item) => (
           <PopularAlbumCard key={item.id} item={item} />

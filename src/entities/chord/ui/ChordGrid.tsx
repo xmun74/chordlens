@@ -12,10 +12,11 @@ export function ChordGrid({ allChords, activeChordIdx }: Props) {
   const next = activeChordIdx < allChords.length - 1 ? allChords[activeChordIdx + 1] : null;
 
   return (
-    <section>
-      <h2 className="font-heading text-xl font-bold text-text-primary mb-6">Vocabulary</h2>
+    <section className="min-w-0">
+      <h2 className="mb-6 font-heading text-xl font-bold text-text-primary">Vocabulary</h2>
 
-      <div className="flex items-center justify-center gap-6">
+      <div className="overflow-x-auto pb-3 [scrollbar-width:thin]">
+        <div className="flex min-w-max items-center justify-start gap-4 px-2 sm:gap-6 md:min-w-0 md:justify-center">
         {/* 이전 코드 */}
         <div className="flex flex-col items-center gap-2 opacity-80 transition-opacity duration-300">
           {prev ? (
@@ -72,6 +73,7 @@ export function ChordGrid({ allChords, activeChordIdx }: Props) {
           ) : (
             <div className="w-[202px] h-[160px]" />
           )}
+        </div>
         </div>
       </div>
     </section>
