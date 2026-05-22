@@ -37,7 +37,11 @@ test("lyrics chord player stacks controls on mobile with internal timeline scrol
   const player = read("src/entities/chord/ui/LyricsChordPlayer.tsx");
 
   assert.match(player, /flex-col lg:flex-row/);
-  assert.match(player, /h-\[180px\] min-w-0 flex-1 overflow-hidden/);
+  assert.match(player, /h-\[180px\]/);
+  assert.match(player, /min-w-0/);
+  assert.match(player, /shrink-0/);
+  assert.match(player, /overflow-hidden/);
+  assert.match(player, /lg:flex-1/);
   assert.match(player, /h-full overflow-x-auto/);
   assert.match(player, /h-11 w-11/);
 });
