@@ -5,12 +5,13 @@ import { useEffect, useRef } from "react";
 interface Props {
   chordName: string;
   isActive?: boolean;
-  size?: "sm" | "md" | "lg";
+  size?: "xs" | "sm" | "md" | "lg";
   fret?: number;
   voicing?: "open" | "barre";
 }
 
 const SIZES = {
+  xs: { w: 64, h: 76 },
   sm: { w: 120, h: 136 },
   md: { w: 160, h: 180 },
   lg: { w: 190, h: 214 },
@@ -436,6 +437,7 @@ function buildBarreFallback(fret: number): ChordShape {
 export function ChordDiagram({ chordName, isActive = false, size = "md", fret, voicing }: Props) {
   const ref = useRef<HTMLDivElement>(null);
   const { w, h } = SIZES[size];
+  const isCompact = size === "xs";
 
   useEffect(() => {
     if (!ref.current) return;
@@ -532,7 +534,7 @@ export function ChordDiagram({ chordName, isActive = false, size = "md", fret, v
       } catch {
         // vexchords unavailable, render placeholder
         if (ref.current) {
-          ref.current.innerHTML = `<div style="width:160px;height:180px;display:flex;align-items:center;justify-content:center;color:#434654;font-size:12px;">${chordName}</div>`;
+          ref.current.innerHTML = `<div style="width:${w}px;height:${h}px;display:flex;align-items:center;justify-content:center;color:#434654;font-size:12px;">${chordName}</div>`;
         }
       }
     };
@@ -543,7 +545,8 @@ export function ChordDiagram({ chordName, isActive = false, size = "md", fret, v
   return (
     <article
       className={[
-        "flex flex-col rounded-2xl border transition-all duration-200",
+        "flex min-w-0 flex-col border transition-all duration-200",
+        isCompact ? "rounded-xl" : "rounded-2xl",
         isActive
           ? "bg-bg-card border-accent-light/60 shadow-[0_0_24px_rgba(180,197,255,0.15)]"
           : "bg-bg-card border-border/10 hover:border-border/40",
@@ -551,20 +554,38 @@ export function ChordDiagram({ chordName, isActive = false, size = "md", fret, v
       aria-label={`${chordName} 코드 다이어그램`}
     >
       {/* Header */}
-      <div className="flex items-center justify-between px-6 pt-5 pb-2">
+      <div
+        className={[
+          "flex min-w-0 items-center justify-between",
+          isCompact ? "px-2 pt-2 pb-1" : "px-6 pt-5 pb-2",
+        ].join(" ")}
+      >
         <span
           className={[
-            "font-mono text-2xl font-bold",
+            "min-w-0 truncate font-mono font-bold",
+            isCompact ? "text-sm" : "text-2xl",
             isActive ? "text-accent-light" : "text-accent-light",
           ].join(" ")}
         >
           {chordName}
         </span>
-        {isActive && <span className="h-2 w-2 rounded-full bg-accent-light animate-pulse" />}
+        {isActive && (
+          <span
+            className={[
+              "shrink-0 rounded-full bg-accent-light animate-pulse",
+              isCompact ? "h-1.5 w-1.5" : "h-2 w-2",
+            ].join(" ")}
+          />
+        )}
       </div>
 
       {/* Diagram */}
-      <div className="mx-6 rounded-lg bg-bg-dark px-4 py-3 mb-4">
+      <div
+        className={[
+          "bg-bg-dark",
+          isCompact ? "mx-2 mb-2 rounded-md px-1 py-1" : "mx-6 mb-4 rounded-lg px-4 py-3",
+        ].join(" ")}
+      >
         <div ref={ref} />
       </div>
     </article>

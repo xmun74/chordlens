@@ -11,7 +11,7 @@ export function PopularAlbumCard({ item }: PopularAlbumCardProps) {
   const formattedDuration = formatDuration(item.duration);
 
   return (
-    <Link href={`/result/${item.id}`} className="group flex flex-col gap-2">
+    <Link href={`/result/${item.id}`} className="group flex min-w-0 flex-col gap-2">
       <div className="relative aspect-square w-full overflow-hidden rounded-lg bg-bg-card/60">
         {item.thumbnailUrl ? (
           <Image
@@ -34,7 +34,9 @@ export function PopularAlbumCard({ item }: PopularAlbumCardProps) {
         <p className="line-clamp-2 font-sans text-sm font-semibold text-text-primary">
           {item.title ?? "제목 없음"}
         </p>
-        <span className="font-sans text-xs text-text-secondary">{item.channelName ?? "-"}</span>
+        <span className="truncate font-sans text-xs text-text-secondary">
+          {item.channelName ?? "-"}
+        </span>
       </div>
     </Link>
   );

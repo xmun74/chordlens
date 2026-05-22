@@ -167,7 +167,11 @@ export function LyricsChordPlayer({ videoId, lyrics, chords, activeChord, onSele
   // ── 커스텀 재생/일시정지 ─────────────────────────────
   const togglePlay = useCallback(() => {
     if (!playerRef.current) return;
-    isPlaying ? playerRef.current.pauseVideo() : playerRef.current.playVideo();
+    if (isPlaying) {
+      playerRef.current.pauseVideo();
+    } else {
+      playerRef.current.playVideo();
+    }
   }, [isPlaying]);
 
   // ── 수동 스크롤 → seek ──────────────────────────────
@@ -205,14 +209,14 @@ export function LyricsChordPlayer({ videoId, lyrics, chords, activeChord, onSele
   const progressPct = duration > 0 ? (currentTime / duration) * 100 : 0;
 
   return (
-    <section className="flex flex-col gap-4">
-      <div className="rounded-2xl bg-bg-dark overflow-hidden">
+    <section className="flex min-w-0 flex-col gap-4">
+      <div className="w-full min-w-0 overflow-hidden rounded-2xl bg-bg-dark">
         {/* ── 가사 표시 ── */}
         {hasLyrics && (
           <>
-            <div className="px-6 pt-5 pb-4 min-h-[68px] flex items-center gap-3">
+            <div className="flex min-h-[68px] min-w-0 items-center gap-3 px-4 pt-5 pb-4 sm:px-6">
               <span className="text-accent-light text-lg select-none">♪</span>
-              <p className="font-heading text-base text-text-primary leading-relaxed flex-1">
+              <p className="min-w-0 flex-1 font-heading text-base leading-relaxed text-text-primary">
                 {currentLyric?.text ?? <span className="text-text-secondary/40">—</span>}
               </p>
               {currentLyric && (
@@ -226,18 +230,18 @@ export function LyricsChordPlayer({ videoId, lyrics, chords, activeChord, onSele
         )}
 
         {/* ── 재생 컨트롤 + 코드 타임라인 ── */}
-        <div className="flex">
+        <div className="flex min-w-0 flex-col lg:flex-row">
           {/* 왼쪽: YouTube 플레이어 + 컨트롤 */}
-          <div className="w-[200px] h-[180px] shrink-0 flex flex-col border-r border-white/5">
+          <div className="flex h-auto w-full shrink-0 flex-col border-b border-white/5 lg:h-[180px] lg:w-[200px] lg:border-r lg:border-b-0">
             {/* YouTube iframe */}
             <div ref={playerDivRef} className="w-full aspect-video bg-black" />
 
             {/* 커스텀 컨트롤 */}
-            <div className="flex items-center gap-2 px-3 py-2 border-t border-white/5">
+            <div className="flex items-center gap-3 border-t border-white/5 px-3 py-2">
               <button
                 onClick={togglePlay}
                 disabled={!playerReady}
-                className="w-8 h-8 rounded-full flex items-center justify-center bg-accent-light/15 border border-accent-light/40 hover:bg-accent-light/25 active:scale-95 transition-all disabled:opacity-30 disabled:cursor-not-allowed shrink-0"
+                className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-accent-light/40 bg-accent-light/15 transition-all hover:bg-accent-light/25 active:scale-95 disabled:cursor-not-allowed disabled:opacity-30 lg:h-8 lg:w-8"
                 aria-label={isPlaying ? "일시정지" : "재생"}
               >
                 {isPlaying ? (
@@ -286,7 +290,7 @@ export function LyricsChordPlayer({ videoId, lyrics, chords, activeChord, onSele
           </div>
 
           {/* 오른쪽: 코드 스크롤 타임라인 */}
-          <div className="flex-1 relative overflow-hidden">
+          <div className="relative h-[180px] min-w-0 shrink-0 overflow-hidden lg:h-auto lg:flex-1">
             {/* Playhead */}
             <div
               className="absolute inset-y-0 z-10 pointer-events-none"
@@ -305,7 +309,7 @@ export function LyricsChordPlayer({ videoId, lyrics, chords, activeChord, onSele
               onScroll={handleScroll}
               onPointerDown={handlePointerDown}
               onPointerUp={handlePointerUp}
-              className="overflow-x-auto h-full"
+              className="h-full overflow-x-auto"
               style={{
                 scrollbarWidth: "thin",
                 scrollbarColor: "#b4c5ff transparent",

@@ -43,7 +43,7 @@ export function ResultList() {
   }
 
   return (
-    <div className="grid grid-cols-3 gap-2">
+    <div className="grid min-w-0 grid-cols-1 gap-2 sm:grid-cols-2 lg:grid-cols-3">
       {data.items.map((item) => (
         <ResultListItemCard key={item.id} item={item} />
       ))}
