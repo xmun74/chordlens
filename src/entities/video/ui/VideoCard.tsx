@@ -1,4 +1,3 @@
-import Image from "next/image";
 import type { VideoMeta } from "../model/types";
 
 interface Props {

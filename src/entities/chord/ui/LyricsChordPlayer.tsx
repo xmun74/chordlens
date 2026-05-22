@@ -167,7 +167,11 @@ export function LyricsChordPlayer({ videoId, lyrics, chords, activeChord, onSele
   // ── 커스텀 재생/일시정지 ─────────────────────────────
   const togglePlay = useCallback(() => {
     if (!playerRef.current) return;
-    isPlaying ? playerRef.current.pauseVideo() : playerRef.current.playVideo();
+    if (isPlaying) {
+      playerRef.current.pauseVideo();
+    } else {
+      playerRef.current.playVideo();
+    }
   }, [isPlaying]);
 
   // ── 수동 스크롤 → seek ──────────────────────────────
@@ -286,7 +290,7 @@ export function LyricsChordPlayer({ videoId, lyrics, chords, activeChord, onSele
           </div>
 
           {/* 오른쪽: 코드 스크롤 타임라인 */}
-          <div className="relative h-[180px] min-w-0 flex-1 overflow-hidden lg:h-auto">
+          <div className="relative h-[180px] min-w-0 shrink-0 overflow-hidden lg:h-auto lg:flex-1">
             {/* Playhead */}
             <div
               className="absolute inset-y-0 z-10 pointer-events-none"

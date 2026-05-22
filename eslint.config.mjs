@@ -8,7 +8,7 @@ const eslintConfig = defineConfig([
   ...nextTs,
   // Prettier와 충돌하는 ESLint 규칙 비활성화 (항상 마지막에 위치)
   prettierConfig,
-  globalIgnores([".next/**", "out/**", "build/**", "next-env.d.ts", "node_modules/**"]),
+  globalIgnores([".next/**", ".omx/**", "out/**", "build/**", "next-env.d.ts", "node_modules/**"]),
 ]);
 
 export default eslintConfig;
