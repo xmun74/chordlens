@@ -264,7 +264,7 @@ export function ChordDiagram({ chordName, fingers, isActive }: Props) {
 
   useEffect(() => {
     if (!ref.current) return;
-    ref.current.innerHTML = '';
+    ref.current.replaceChildren();
     const box = new ChordBox(ref.current, { width: 120, height: 140 });
     box.draw({ chord: fingers, position: 1 });
   }, [fingers]);

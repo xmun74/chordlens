@@ -48,10 +48,6 @@ export function UrlInputForm({ onSubmit, isLoading = false }: Props) {
   const handleDrop = (e: DragEvent<HTMLDivElement>) => {
     e.preventDefault();
     setIsDragging(false);
-    const file = e.dataTransfer.files[0];
-    if (file) {
-      console.log("File dropped:", file.name);
-    }
   };
 
   return (

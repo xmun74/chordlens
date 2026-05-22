@@ -1,10 +1,11 @@
 import { NextResponse } from "next/server";
+import { buildUpstreamUrl, getApiBaseUrl } from "@/shared/api/upstream";
 
 export const dynamic = "force-dynamic";
 
 export async function GET() {
-  const apiUrl = process.env.NEXT_PUBLIC_API_URL;
-  if (!apiUrl?.startsWith("http")) {
+  const apiBaseUrl = getApiBaseUrl();
+  if (!apiBaseUrl) {
     return NextResponse.json({ detail: "API URL이 설정되지 않았습니다." }, { status: 503 });
   }
 
@@ -12,7 +13,9 @@ export async function GET() {
   const timeoutId = setTimeout(() => controller.abort(), 10_000);
 
   try {
-    const upstream = await fetch(`${apiUrl}/results/popular`, { signal: controller.signal });
+    const upstream = await fetch(buildUpstreamUrl(apiBaseUrl, "/results/popular"), {
+      signal: controller.signal,
+    });
     clearTimeout(timeoutId);
 
     if (!upstream.ok) {

@@ -446,7 +446,7 @@ export function ChordDiagram({ chordName, isActive = false, size = "md", fret, v
       try {
         const { ChordBox } = await import("vexchords");
         if (!ref.current) return;
-        ref.current.innerHTML = "";
+        ref.current.replaceChildren();
 
         const staticData = resolveChordData(chordName);
         const data =
@@ -534,7 +534,18 @@ export function ChordDiagram({ chordName, isActive = false, size = "md", fret, v
       } catch {
         // vexchords unavailable, render placeholder
         if (ref.current) {
-          ref.current.innerHTML = `<div style="width:${w}px;height:${h}px;display:flex;align-items:center;justify-content:center;color:#434654;font-size:12px;">${chordName}</div>`;
+          const placeholder = document.createElement("div");
+          Object.assign(placeholder.style, {
+            width: `${w}px`,
+            height: `${h}px`,
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            color: "#434654",
+            fontSize: "12px",
+          });
+          placeholder.textContent = chordName;
+          ref.current.replaceChildren(placeholder);
         }
       }
     };
