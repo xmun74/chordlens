@@ -44,6 +44,10 @@ export function ChordGrid({ allChords, activeChordIdx }: Props) {
                 size="xs"
                 fret={entry.fret}
                 voicing={entry.voicing}
+                frets={entry.frets}
+                fingers={entry.fingers}
+                baseFret={entry.base_fret}
+                barres={entry.barres}
               />
             </div>
           );
@@ -64,6 +68,10 @@ export function ChordGrid({ allChords, activeChordIdx }: Props) {
                   size="sm"
                   fret={prev.fret}
                   voicing={prev.voicing}
+                  frets={prev.frets}
+                  fingers={prev.fingers}
+                  baseFret={prev.base_fret}
+                  barres={prev.barres}
                 />
               </>
             ) : (
@@ -84,6 +92,10 @@ export function ChordGrid({ allChords, activeChordIdx }: Props) {
                   size="lg"
                   fret={current.fret}
                   voicing={current.voicing}
+                  frets={current.frets}
+                  fingers={current.fingers}
+                  baseFret={current.base_fret}
+                  barres={current.barres}
                 />
               </>
             ) : (
@@ -103,6 +115,10 @@ export function ChordGrid({ allChords, activeChordIdx }: Props) {
                   size="sm"
                   fret={next.fret}
                   voicing={next.voicing}
+                  frets={next.frets}
+                  fingers={next.fingers}
+                  baseFret={next.base_fret}
+                  barres={next.barres}
                 />
               </>
             ) : (

@@ -22,8 +22,12 @@ declare module "vexchords" {
     toString: number;
   }
 
+  // chord: [string, fret, label?]
+  //   string: 1=high e … 6=low E
+  //   fret: 0=open, "x"=muted, n=fret (position 기준 상대)
+  //   label: 손가락 번호/표시 (number 또는 string)
   export interface ChordConfig {
-    chord: [number, number, number?][];
+    chord: [number, number | "x", (number | string)?][];
     position?: number;
     barres?: BarreConfig[];
     tuning?: string[];

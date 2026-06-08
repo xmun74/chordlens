@@ -8,6 +8,12 @@ interface Props {
   size?: "xs" | "sm" | "md" | "lg";
   fret?: number;
   voicing?: "open" | "barre";
+  // 백엔드(chords-db) 운지 데이터. 있으면 이걸로 직접 렌더한다.
+  // frets/fingers: 6현(저음 E현→고음 e현 순), -1=뮤트, 0=개방.
+  frets?: number[];
+  fingers?: number[];
+  baseFret?: number;
+  barres?: number[];
 }
 
 const SIZES = {
@@ -18,8 +24,8 @@ const SIZES = {
 };
 
 type ChordShape = {
-  // [string, fret, finger?]  string 1=high e, 6=low E  /  finger 1=index … 4=pinky
-  fingers: [number, number, number?][];
+  // [string, fret, finger?]  string 1=high e, 6=low E  /  fret 0=open, "x"=muted
+  fingers: [number, number | "x", (number | string)?][];
   barres?: { fret: number; fromString: number; toString: number }[];
   position?: number;
 };
@@ -434,7 +440,60 @@ function buildBarreFallback(fret: number): ChordShape {
   };
 }
 
-export function ChordDiagram({ chordName, isActive = false, size = "md", fret, voicing }: Props) {
+/**
+ * 백엔드(chords-db) 운지 데이터를 vexchords 형식으로 변환한다.
+ * chords-db frets/fingers: index 0 = 저음 E현(6번줄) … index 5 = 고음 e현(1번줄).
+ *   값 -1 = 뮤트, 0 = 개방, n = base_fret 기준 상대 프렛.
+ * vexchords string: 1 = 고음 e … 6 = 저음 E  ⇒  string = 6 - index.
+ * barres: chords-db는 바레 프렛만 주므로, 같은 프렛을 누르는 현들의 범위로 span을 계산.
+ */
+function fromVoicingData(
+  frets: number[],
+  fingers: number[] | undefined,
+  baseFret: number,
+  barres: number[] | undefined,
+): ChordShape {
+  const chord: [number, number | "x", (number | string)?][] = [];
+  for (let i = 0; i < frets.length; i++) {
+    const f = frets[i];
+    const vexString = 6 - i;
+    if (f < 0) {
+      chord.push([vexString, "x"]);
+      continue;
+    }
+    const fingerNum = fingers?.[i];
+    if (fingerNum && fingerNum > 0) {
+      chord.push([vexString, f, fingerNum]);
+    } else {
+      chord.push([vexString, f]);
+    }
+  }
+
+  const barreShapes = (barres ?? [])
+    .map((bf) => {
+      const strings: number[] = [];
+      for (let i = 0; i < frets.length; i++) {
+        if (frets[i] === bf) strings.push(6 - i);
+      }
+      if (strings.length === 0) return null;
+      return { fret: bf, fromString: Math.min(...strings), toString: Math.max(...strings) };
+    })
+    .filter((b): b is { fret: number; fromString: number; toString: number } => b !== null);
+
+  return { fingers: chord, barres: barreShapes, position: baseFret };
+}
+
+export function ChordDiagram({
+  chordName,
+  isActive = false,
+  size = "md",
+  fret,
+  voicing,
+  frets,
+  fingers: fingerData,
+  baseFret,
+  barres: barresData,
+}: Props) {
   const ref = useRef<HTMLDivElement>(null);
   const { w, h } = SIZES[size];
   const isCompact = size === "xs";
@@ -448,7 +507,13 @@ export function ChordDiagram({ chordName, isActive = false, size = "md", fret, v
         if (!ref.current) return;
         ref.current.replaceChildren();
 
-        const staticData = resolveChordData(chordName);
+        // 1순위: 백엔드(chords-db) 운지 데이터로 직접 렌더.
+        // 2순위(구 캐시 데이터 등 frets 없음): 하드코딩 사전 → 일반 barre fallback.
+        const backendData =
+          frets && frets.length === 6 && frets.some((f) => f > 0)
+            ? fromVoicingData(frets, fingerData, baseFret ?? 1, barresData)
+            : null;
+        const staticData = backendData ?? resolveChordData(chordName);
         const data =
           staticData ??
           (voicing === "barre" && fret != null && fret >= 1 ? buildBarreFallback(fret) : null);
@@ -551,7 +616,7 @@ export function ChordDiagram({ chordName, isActive = false, size = "md", fret, v
     };
 
     drawChord();
-  }, [chordName, isActive, w, h, fret, voicing]);
+  }, [chordName, isActive, w, h, fret, voicing, frets, fingerData, baseFret, barresData]);
 
   return (
     <article
