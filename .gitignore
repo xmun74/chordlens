@@ -52,12 +52,4 @@ yarn-error.log*
 next-env.d.ts
 
 # OMX runtime state
-.omx/*
-!.omx/context/
-!.omx/context/*.md
-!.omx/interviews/
-!.omx/interviews/*.md
-!.omx/specs/
-!.omx/specs/*.md
-!.omx/plans/
-!.omx/plans/*.md
+.omx/
