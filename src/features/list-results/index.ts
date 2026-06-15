@@ -1,4 +1,5 @@
 export { ResultList } from "./ui/ResultList";
 export { PopularList } from "./ui/PopularList";
-export { useResults, resultsQueryKey } from "./api/useResults";
-export { usePopularResults, popularResultsQueryKey } from "./api/usePopularResults";
+export { useResults } from "./api/useResults";
+export { usePopularResults } from "./api/usePopularResults";
+export { resultsQueryKey, popularResultsQueryKey } from "@/entities/result";
