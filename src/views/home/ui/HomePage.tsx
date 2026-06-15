@@ -4,6 +4,7 @@ import { useCallback } from "react";
 import { useTranslations } from "next-intl";
 import { useExtractChord, UrlInputForm, LoadingState } from "@/features/extract-chord";
 import { PopularList, ResultList } from "@/features/list-results";
+import { BackgroundPaths } from "@/shared/ui/BackgroundPaths";
 
 export function HomePage() {
   const t = useTranslations();
@@ -19,14 +20,15 @@ export function HomePage() {
   return (
     <main className="min-h-screen overflow-x-clip">
       {/* ─── Hero & Input Section ─── */}
-      <section className="mx-auto w-full max-w-7xl px-4 pt-8 pb-8 sm:px-6 sm:pt-10 lg:px-8 lg:pt-12 lg:pb-10">
-        <div className="flex min-w-0 flex-col items-start gap-8 lg:flex-row lg:gap-12">
-          <div className="w-full min-w-0 max-w-2xl flex-1">
+      <section className="relative isolate mx-auto w-full max-w-7xl flex justify-center items-center overflow-hidden px-4 pt-8 pb-8 sm:px-6 sm:pt-10 lg:px-8 lg:pt-12 lg:pb-10">
+        <BackgroundPaths className="absolute inset-0 -z-10" />
+        <div className="flex min-w-0 flex-col items-start gap-8">
+          <div className="w-full min-w-0 max-w-2xl">
             <h1 className="mb-5 font-heading text-4xl leading-[1.15] font-bold tracking-[-0.025em] text-text-primary sm:text-5xl sm:leading-[1.2] lg:mb-6 lg:text-[60px]">
-              {t("YouTube 동영상에서")}{" "}
-              <span className="bg-linear-to-r from-accent-light to-accent bg-clip-text text-transparent">
+              {t("YouTube 동영상에서")}
+              <div className="bg-linear-to-r from-accent-light to-accent bg-clip-text text-transparent">
                 {t("기타 코드를 배우세요")}
-              </span>
+              </div>
             </h1>
             <p className="mb-6 max-w-xl font-sans text-base leading-relaxed text-text-secondary sm:mb-8 sm:text-lg">
               {t("좋아하는 곡의 링크를 붙여보세요")}
@@ -34,8 +36,6 @@ export function HomePage() {
 
             <UrlInputForm onSubmit={handleSubmit} isLoading={mutation.isPending} />
           </div>
-
-          <div className="hidden lg:block"></div>
         </div>
       </section>
 

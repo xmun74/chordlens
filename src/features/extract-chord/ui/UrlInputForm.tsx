@@ -122,7 +122,7 @@ export function UrlInputForm({ onSubmit, isLoading = false }: Props) {
           "flex h-[120px] min-w-0 cursor-pointer flex-col items-center justify-center gap-3 rounded-xl border px-4 text-center transition-all sm:h-[130px]",
           isDragging
             ? "border-accent bg-accent/10"
-            : "border-border bg-bg-card/30 hover:border-border/70",
+            : "border-border bg-bg-card hover:border-border/70",
         ].join(" ")}
       >
         <svg
