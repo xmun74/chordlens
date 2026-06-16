@@ -20,18 +20,17 @@ export default async function Home() {
   const queryClient = getQueryClient();
   const baseUrl = await getBaseUrl();
 
-  // 실패 허용: prefetchQuery reject가 allSettled로 page render를 reject하지 않음.
-  // v5 기본 dehydrate는 에러 쿼리를 redact → 정상 응답만 첫 HTML에 동봉(워터폴 제거).
-  await Promise.allSettled([
-    queryClient.prefetchQuery({
-      queryKey: popularResultsQueryKey,
-      queryFn: () => getPopularResults(baseUrl),
-    }),
-    queryClient.prefetchQuery({
-      queryKey: resultsQueryKey,
-      queryFn: () => getResults(baseUrl),
-    }),
-  ]);
+  // streaming SSR: await 하지 않고 prefetch만 시작한다(비대기).
+  // pending 쿼리가 dehydrate에 포함(getQueryClient 설정)되어, 서버에서 resolve되면
+  // 같은 응답 스트림으로 흘러간다 → 히어로는 즉시 flush, 목록만 스트리밍.
+  void queryClient.prefetchQuery({
+    queryKey: popularResultsQueryKey,
+    queryFn: () => getPopularResults(baseUrl),
+  });
+  void queryClient.prefetchQuery({
+    queryKey: resultsQueryKey,
+    queryFn: () => getResults(baseUrl),
+  });
 
   return (
     <HydrationBoundary state={dehydrate(queryClient)}>

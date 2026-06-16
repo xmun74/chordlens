@@ -1,5 +1,5 @@
 import { getTranslations } from "next-intl/server";
-import { ResultList } from "@/features/list-results";
+import { RecentResults } from "@/features/list-results";
 
 export async function RecentSection(): Promise<React.JSX.Element> {
   const t = await getTranslations();
@@ -9,7 +9,7 @@ export async function RecentSection(): Promise<React.JSX.Element> {
       <p className="font-mono text-xs tracking-widest text-text-secondary uppercase mb-4">
         {t("최근")}
       </p>
-      <ResultList />
+      <RecentResults />
     </section>
   );
 }
