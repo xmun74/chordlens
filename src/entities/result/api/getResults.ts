@@ -1,7 +1,7 @@
 import type { ResultListResponse } from "../model/types";
 
-export async function getResults(): Promise<ResultListResponse> {
-  const res = await fetch("/api/results");
+export async function getResults(baseUrl = ""): Promise<ResultListResponse> {
+  const res = await fetch(`${baseUrl}/api/results`, { cache: "no-store" });
 
   if (res.status === 504) {
     throw new Error("요청 시간이 초과되었습니다.");
