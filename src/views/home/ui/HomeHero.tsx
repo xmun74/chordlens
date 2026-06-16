@@ -11,13 +11,13 @@ export async function HomeHero(): Promise<React.JSX.Element> {
       heroCopy={
         <>
           <h1 className="mb-5 font-heading text-4xl leading-[1.15] font-bold tracking-[-0.025em] text-text-primary sm:text-5xl sm:leading-[1.2] lg:mb-6 lg:text-[60px]">
-            {t("YouTube 동영상에서")}
+            {t("링크 하나로 시작하는")}
             <div className="bg-linear-to-r from-accent-light to-accent bg-clip-text text-transparent">
-              {t("기타 코드를 배우세요")}
+              {t("기타 코드 배우기")}
             </div>
           </h1>
           <p className="mb-6 max-w-xl font-sans text-base leading-relaxed text-text-secondary sm:mb-8 sm:text-lg">
-            {t("좋아하는 곡의 링크를 붙여보세요")}
+            {t("좋아하는 곡의 유튜브 링크를 붙여보세요")}
           </p>
         </>
       }

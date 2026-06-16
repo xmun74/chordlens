@@ -24,7 +24,7 @@ export function ExtractSection({ background, heroCopy }: ExtractSectionProps): R
   return (
     <>
       {/* ─── Hero & Input Section ─── */}
-      <section className="relative isolate mx-auto w-full max-w-7xl flex justify-center items-center overflow-hidden px-4 pt-8 pb-8 sm:px-6 sm:pt-10 lg:px-8 lg:pt-12 lg:pb-10">
+      <section className="relative isolate w-full flex justify-center items-center overflow-hidden px-4 pt-8 pb-8 sm:px-6 sm:pt-10 lg:px-8 lg:pt-12 lg:pb-10">
         {background}
         <div className="flex min-w-0 flex-col items-start gap-8">
           <div className="w-full min-w-0 max-w-2xl">

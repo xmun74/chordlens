@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useRef, DragEvent, ChangeEvent } from "react";
+import { useState, ChangeEvent } from "react";
 import { useTranslations } from "next-intl";
 import { isValidYouTubeUrl } from "@/shared/lib/youtube";
 import { Button } from "@/shared/ui/Button";
@@ -14,8 +14,6 @@ export function UrlInputForm({ onSubmit, isLoading = false }: Props) {
   const t = useTranslations();
   const [url, setUrl] = useState("");
   const [error, setError] = useState("");
-  const [isDragging, setIsDragging] = useState(false);
-  const fileInputRef = useRef<HTMLInputElement>(null);
 
   const isValid = isValidYouTubeUrl(url);
 
@@ -36,18 +34,6 @@ export function UrlInputForm({ onSubmit, isLoading = false }: Props) {
 
   const handleKeyDown = (e: React.KeyboardEvent) => {
     if (e.key === "Enter" && isValid && !isLoading) handleSubmit();
-  };
-
-  const handleDragOver = (e: DragEvent<HTMLDivElement>) => {
-    e.preventDefault();
-    setIsDragging(true);
-  };
-
-  const handleDragLeave = () => setIsDragging(false);
-
-  const handleDrop = (e: DragEvent<HTMLDivElement>) => {
-    e.preventDefault();
-    setIsDragging(false);
   };
 
   return (
@@ -109,50 +95,6 @@ export function UrlInputForm({ onSubmit, isLoading = false }: Props) {
           {error}
         </p>
       )}
-
-      {/* Drag & Drop area */}
-      <div
-        role="region"
-        aria-label={t("MP3 또는 WAV 파일을 여기에 드래그 앤 드롭하세요")}
-        onDragOver={handleDragOver}
-        onDragLeave={handleDragLeave}
-        onDrop={handleDrop}
-        onClick={() => fileInputRef.current?.click()}
-        className={[
-          "flex h-[120px] min-w-0 cursor-pointer flex-col items-center justify-center gap-3 rounded-xl border px-4 text-center transition-all sm:h-[130px]",
-          isDragging
-            ? "border-accent bg-accent/10"
-            : "border-border bg-bg-card hover:border-border/70",
-        ].join(" ")}
-      >
-        <svg
-          className="text-text-secondary/60"
-          width="32"
-          height="32"
-          viewBox="0 0 32 32"
-          fill="none"
-          stroke="currentColor"
-          strokeWidth="1.5"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          aria-hidden="true"
-        >
-          <path d="M12 27V9l14-3v18" />
-          <circle cx="9" cy="27" r="3" />
-          <circle cx="23" cy="24" r="3" />
-        </svg>
-        <span className="font-heading text-sm text-text-secondary sm:text-base">
-          {t("MP3 또는 WAV 파일을 여기에 드래그 앤 드롭하세요")}
-        </span>
-      </div>
-
-      <input
-        ref={fileInputRef}
-        type="file"
-        accept=".mp3,.wav,audio/*"
-        className="hidden"
-        onChange={() => {}}
-      />
 
       <Button
         type="button"
