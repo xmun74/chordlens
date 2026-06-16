@@ -6,7 +6,7 @@ import { usePopularResults } from "@/features/list-results/api/usePopularResults
 import { PopularAlbumCard } from "@/features/list-results/ui/PopularAlbumCard";
 
 export function PopularList() {
-  const { data, isPending, isError } = usePopularResults();
+  const { data } = usePopularResults();
   const scrollRef = useRef<HTMLDivElement>(null);
   const [canScrollLeft, setCanScrollLeft] = useState(false);
   const [canScrollRight, setCanScrollRight] = useState(false);
@@ -34,21 +34,7 @@ export function PopularList() {
     });
   };
 
-  if (isPending) {
-    return (
-      <div className="grid grid-flow-col grid-rows-[repeat(2,auto)] auto-cols-[11rem] gap-4 overflow-hidden sm:auto-cols-[14rem]">
-        {Array.from({ length: 8 }).map((_, i) => (
-          <div key={i} className="flex flex-col gap-2">
-            <div className="aspect-square w-full animate-pulse rounded-lg bg-bg-card/40" />
-            <div className="h-4 w-3/4 animate-pulse rounded bg-bg-card/40" />
-            <div className="h-3 w-1/2 animate-pulse rounded bg-bg-card/40" />
-          </div>
-        ))}
-      </div>
-    );
-  }
-
-  if (isError || !data || data.items.length === 0) return null;
+  if (data.items.length === 0) return null;
 
   return (
     <div

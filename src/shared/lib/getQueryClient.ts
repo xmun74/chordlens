@@ -1,4 +1,4 @@
-import { QueryClient, isServer } from "@tanstack/react-query";
+import { QueryClient, isServer, defaultShouldDehydrateQuery } from "@tanstack/react-query";
 
 function makeQueryClient(): QueryClient {
   return new QueryClient({
@@ -7,6 +7,13 @@ function makeQueryClient(): QueryClient {
         staleTime: Infinity,
         gcTime: 1000 * 60 * 10,
         retry: 1,
+      },
+      dehydrate: {
+        // streaming SSR: void prefetch로 시작된 pending 쿼리도 직렬화에 포함해야
+        // 서버에서 resolve된 데이터가 같은 응답 스트림으로 전달된다.
+        shouldDehydrateQuery: (query) =>
+          defaultShouldDehydrateQuery(query) || query.state.status === "pending",
+        shouldRedactErrors: () => false,
       },
     },
   });

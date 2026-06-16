@@ -1,5 +1,5 @@
 import { getTranslations } from "next-intl/server";
-import { PopularList } from "@/features/list-results";
+import { PopularResults } from "@/features/list-results";
 
 export async function PopularSection(): Promise<React.JSX.Element> {
   const t = await getTranslations();
@@ -9,7 +9,7 @@ export async function PopularSection(): Promise<React.JSX.Element> {
       <p className="font-mono text-xs tracking-widest text-text-secondary uppercase mb-4">
         {t("인기")}
       </p>
-      <PopularList />
+      <PopularResults />
     </section>
   );
 }
