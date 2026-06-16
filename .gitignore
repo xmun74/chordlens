@@ -53,3 +53,6 @@ next-env.d.ts
 
 # OMX runtime state
 .omx/
+
+# 개인 학습 노트
+study/
